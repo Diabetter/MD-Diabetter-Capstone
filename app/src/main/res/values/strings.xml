@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Diabetter</string>
+    <string name="start_now">Start Now</string>
+    <string name="have_account">I already have an account</string>
+    <string name="tv_welcome_1">Ayo mulai hidup sehatmu dengan membuat menu sehat harian dengan DiaBetter!</string>
 </resources>
