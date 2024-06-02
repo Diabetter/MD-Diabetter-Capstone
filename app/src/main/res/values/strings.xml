@@ -3,4 +3,6 @@
     <string name="start_now">Start Now</string>
     <string name="have_account">I already have an account</string>
     <string name="tv_welcome_1">Ayo mulai hidup sehatmu dengan membuat menu sehat harian dengan DiaBetter!</string>
+    <string name="tv_welcome2">Buat daftar menu harian sesuai dengan keinginan mu dengan DiaBetter!</string>
+    <string name="tv_welcome3">Bagikan menu sehat rekomendasi mu kepada banyak orang di DiaBetter!</string>
 </resources>

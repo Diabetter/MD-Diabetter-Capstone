@@ -15,58 +15,31 @@
             motion:layout_constraintTop_toBottomOf="@id/guideline"
             motion:layout_constraintStart_toStartOf="parent" />
         <Constraint
-            android:id="@+id/circle_layout"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp" />
-        <Constraint
             android:id="@+id/ivWelcome2"
             motion:layout_constraintStart_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/guideline" />
         <Constraint
-            android:id="@+id/circle_left_active"
+            android:id="@+id/circle_active"
             motion:layout_constraintStart_toEndOf="@id/guideline_left"
-            motion:layout_constraintEnd_toStartOf="@id/circle_mid_inactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:alpha="1"
-            android:layout_marginTop="16dp" />
-        <Constraint
-            android:id="@+id/circle_left_inactive"
-            motion:layout_constraintStart_toEndOf="@id/guideline_left"
-            motion:layout_constraintEnd_toStartOf="@id/circle_mid_active"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:layout_marginTop="16dp"
-            android:alpha="0"/>
-        <Constraint
-            android:id="@+id/circle_mid_active"
-            motion:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
-            motion:layout_constraintStart_toEndOf="@id/circle_left_active"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:layout_marginTop="16dp" />
-        <Constraint
-            android:id="@+id/circle_mid_inactive"
-            motion:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
-            motion:layout_constraintStart_toEndOf="@id/circle_left_active"
+            motion:layout_constraintEnd_toStartOf="@id/circle_inactive_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
             android:layout_marginTop="16dp" />
         <Constraint
-            android:id="@+id/circle_right_inactive"
+            android:id="@+id/circle_inactive_1"
+            motion:layout_constraintEnd_toStartOf="@id/circle_inactive_2"
+            motion:layout_constraintStart_toEndOf="@id/circle_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
+            android:layout_marginTop="16dp" />
+        <Constraint
+            android:id="@+id/circle_inactive_2"
             motion:layout_constraintEnd_toStartOf="@id/guideline_right"
-            motion:layout_constraintStart_toEndOf="@id/circle_mid_inactive"
+            motion:layout_constraintStart_toEndOf="@id/circle_inactive_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
@@ -87,53 +60,31 @@
             motion:layout_constraintTop_toBottomOf="@id/guideline"
             motion:layout_constraintEnd_toStartOf="parent" />
         <Constraint
-            android:id="@+id/circle_layout"
-            motion:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/ivWelcome3"
+            motion:layout_constraintStart_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline" />
+        <Constraint
+            android:id="@+id/circle_active"
+            motion:layout_constraintStart_toEndOf="@id/circle_inactive_1"
+            motion:layout_constraintEnd_toStartOf="@id/circle_inactive_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="16dp" />
         <Constraint
-            android:id="@+id/circle_left_active"
+            android:id="@+id/circle_inactive_1"
             motion:layout_constraintStart_toEndOf="@id/guideline_left"
-            motion:layout_constraintEnd_toStartOf="@id/circle_mid_active"
+            motion:layout_constraintEnd_toStartOf="@id/circle_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:alpha="0"
-            android:layout_marginTop="16dp" />
-        <Constraint
-            android:id="@+id/circle_left_inactive"
-            motion:layout_constraintStart_toEndOf="@id/guideline_left"
-            motion:layout_constraintEnd_toStartOf="@id/circle_mid_active"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:layout_marginTop="16dp"
-            android:alpha="1"/>
-        <Constraint
-            android:id="@+id/circle_mid_active"
-            motion:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
-            motion:layout_constraintStart_toEndOf="@id/circle_left_inactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="1"
             motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
             android:layout_marginTop="16dp" />
         <Constraint
-            android:id="@+id/circle_mid_inactive"
-            motion:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
-            motion:layout_constraintStart_toEndOf="@id/circle_left_active"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0"
-            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:layout_marginTop="16dp" />
-        <Constraint
-            android:id="@+id/circle_right_inactive"
+            android:id="@+id/circle_inactive_2"
             motion:layout_constraintEnd_toStartOf="@id/guideline_right"
-            motion:layout_constraintStart_toEndOf="@id/circle_mid_active"
+            motion:layout_constraintStart_toEndOf="@id/circle_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
@@ -144,4 +95,51 @@
         motion:constraintSetEnd="@+id/welcome2">
         <OnSwipe motion:dragDirection="dragLeft" />
     </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/welcome2"
+        motion:constraintSetEnd="@+id/welcome3">
+        <OnSwipe motion:dragDirection="dragLeft" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/welcome3"
+        motion:deriveConstraintsFrom="@+id/welcome2" >
+        <Constraint
+            android:id="@+id/ivWelcome2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline"
+            motion:layout_constraintEnd_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/ivWelcome3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/circle_active"
+            motion:layout_constraintStart_toEndOf="@id/circle_inactive_2"
+            motion:layout_constraintEnd_toStartOf="@id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
+            android:layout_marginTop="16dp" />
+        <Constraint
+            android:id="@+id/circle_inactive_1"
+            motion:layout_constraintEnd_toStartOf="@id/circle_inactive_2"
+            motion:layout_constraintStart_toEndOf="@id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
+            android:layout_marginTop="16dp" />
+        <Constraint
+            android:id="@+id/circle_inactive_2"
+            motion:layout_constraintEnd_toStartOf="@id/circle_active"
+            motion:layout_constraintStart_toEndOf="@id/circle_inactive_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/tv_welcome"
+            android:layout_marginTop="16dp" />
+    </ConstraintSet>
+
 </MotionScene>
