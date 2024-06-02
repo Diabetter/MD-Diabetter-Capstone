@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    app:layoutDescription="@xml/activity_welcome_scene"
     tools:context=".view.welcome.WelcomeActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -20,81 +21,138 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/welcome_1"
-        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
-    <LinearLayout
-        android:id="@+id/circle_layout"
+    <ImageView
+        android:id="@+id/ivWelcome2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:src="@drawable/welcome_2"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <ImageView
+        android:id="@+id/circle_left_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/circle_mid_inactive"
         app:layout_constraintTop_toBottomOf="@id/tv_welcome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <ImageView
-            android:id="@+id/circleLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/active_circle" />
-        <ImageView
-            android:id="@+id/circleMid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:src="@drawable/inactive_circle" />
-        <ImageView
-            android:id="@+id/circleRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/inactive_circle" />
-    </LinearLayout>
+        android:layout_marginTop="16dp"
+        android:src="@drawable/active_circle" />
+
+    <ImageView
+        android:id="@+id/circle_left_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/circle_mid_inactive"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/inactive_circle"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/circle_mid_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        app:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
+        app:layout_constraintStart_toEndOf="@id/circle_left_active"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/active_circle"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/circle_mid_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        app:layout_constraintEnd_toStartOf="@id/circle_right_inactive"
+        app:layout_constraintStart_toEndOf="@id/circle_left_active"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/inactive_circle" />
+
+    <ImageView
+        android:id="@+id/circle_right_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintStart_toEndOf="@id/circle_mid_inactive"
+        android:src="@drawable/inactive_circle" />
+
+    <ImageView
+        android:id="@+id/circle_right_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintStart_toEndOf="@id/circle_mid_inactive"
+        android:src="@drawable/inactive_circle"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:paddingHorizontal="80dp"
-        app:layout_constraintTop_toBottomOf="@id/ivWelcome"
-        app:layout_constraintStart_toStartOf="@id/ivWelcome"
-        app:layout_constraintEnd_toEndOf="@id/ivWelcome"
         android:fontFamily="@font/poppins"
-        android:textSize="12sp"
-        android:textColor="@color/black"
+        android:gravity="center"
+        android:paddingHorizontal="80dp"
         android:text="@string/tv_welcome_1"
-        android:gravity="center"/>
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/ivWelcome"
+        app:layout_constraintStart_toStartOf="@id/ivWelcome"
+        app:layout_constraintTop_toBottomOf="@id/ivWelcome" />
+    <TextView
+        android:id="@+id/tv_welcome2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:paddingHorizontal="80dp"
+        android:text="@string/tv_welcome_1"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/ivWelcome2"
+        app:layout_constraintStart_toStartOf="@id/ivWelcome2"
+        app:layout_constraintTop_toBottomOf="@id/ivWelcome2" />
 
     <Button
         android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="48dp"
-        android:padding="12dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@id/have_account"
         android:backgroundTint="@color/secondary_pink"
         android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
+        android:padding="12dp"
         android:text="@string/start_now"
-        android:textColor="@color/black"/>
-    
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/have_account" />
+
     <Button
         android:id="@+id/have_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="48dp"
-        android:padding="12dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline_btm"
         android:backgroundTint="@color/white"
-        app:strokeColor="@color/secondary_pink"
-        app:strokeWidth="3dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
+        android:padding="12dp"
         android:text="@string/have_account"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_btm"
+        app:strokeColor="@color/secondary_pink"
+        app:strokeWidth="3dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btm"
@@ -102,4 +160,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
