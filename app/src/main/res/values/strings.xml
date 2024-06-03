@@ -5,4 +5,7 @@
     <string name="tv_welcome_1">Ayo mulai hidup sehatmu dengan membuat menu sehat harian dengan DiaBetter!</string>
     <string name="tv_welcome2">Buat daftar menu harian sesuai dengan keinginan mu dengan DiaBetter!</string>
     <string name="tv_welcome3">Bagikan menu sehat rekomendasi mu kepada banyak orang di DiaBetter!</string>
+    <string name="indicator_1">1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
