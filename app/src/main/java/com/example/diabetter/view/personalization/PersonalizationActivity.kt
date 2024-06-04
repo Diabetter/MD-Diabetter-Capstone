@@ -21,7 +21,7 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private var touchWithinBounds = true
-    private lateinit var currentGender : String
+    private var currentGender : String? = null
     fun retrieveBinding(): ActivityPersonalizationBinding {
         return binding
     }
@@ -106,7 +106,7 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
                 .commit()
             setStepIndicatorState(binding.lineStep12, true, "line")
             setStepIndicatorState(binding.stepIndicatorCircle2, true, "circle")
-            Log.d("Testt", currentGender)
+//            Log.d("Testt", currentGender!!)
         } else if (currentFragment is BodyPersonalizationFragment) {
             val nextFragment = ActivityPersonalizationFragment()
             supportFragmentManager.beginTransaction()

@@ -19,4 +19,8 @@
     <string name="man">Man</string>
     <string name="woman">woman</string>
     <string name="continues">Continue</string>
+    <string name="tv_body_personalization">Please enter your current age, weight, and height.</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
 </resources>
