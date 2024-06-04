@@ -5,135 +5,142 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.personalization.PersonalizationActivity">
 
-    <ImageView
-        android:id="@+id/step_indicator_circle_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/line_step_1_2"
-        android:src="@drawable/step_indicator_circle_active"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/indicator_1"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_1"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_1"
-        app:layout_constraintStart_toStartOf="@id/step_indicator_circle_1"
-        app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_1"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
-    <ImageView
-        android:id="@+id/line_step_1_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_1"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_1"
-        app:layout_constraintEnd_toStartOf="@id/step_indicator_circle_2"
-        android:src="@drawable/line_step_inactive"/>
-    <ImageView
-        android:id="@+id/step_indicator_circle_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/line_step_2_3"
-        android:src="@drawable/step_indicator_circle_inactive"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/indicator_1"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_2"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_2"
-        app:layout_constraintStart_toStartOf="@id/step_indicator_circle_2"
-        app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_2"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
-    <ImageView
-        android:id="@+id/line_step_2_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_2"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_2"
-        app:layout_constraintEnd_toStartOf="@id/step_indicator_circle_3"
-        android:src="@drawable/line_step_inactive"/>
-    <ImageView
-        android:id="@+id/step_indicator_circle_3"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/step_indicator_circle_inactive"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/indicator_1"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_3"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_3"
-        app:layout_constraintStart_toStartOf="@id/step_indicator_circle_3"
-        app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_3"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
-    <ImageView
-        android:id="@+id/line_step_3_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_3"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_3"
-        app:layout_constraintStart_toEndOf="@id/step_indicator_circle_3"
-        android:src="@drawable/line_step_inactive"/>
-    <ImageView
-        android:id="@+id/step_indicator_circle_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/line_step_3_4"
-        android:src="@drawable/step_indicator_circle_inactive"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/indicator_1"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_4"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_4"
-        app:layout_constraintStart_toStartOf="@id/step_indicator_circle_4"
-        app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_4"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
-    <ImageView
-        android:id="@+id/line_step_4_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_3"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_3"
-        app:layout_constraintStart_toEndOf="@id/step_indicator_circle_4"
-        android:src="@drawable/line_step_inactive"/>
-    <ImageView
-        android:id="@+id/step_indicator_circle_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/line_step_4_5"
-        android:src="@drawable/step_indicator_circle_inactive"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/indicator_1"
-        app:layout_constraintTop_toTopOf="@id/step_indicator_circle_5"
-        app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_5"
-        app:layout_constraintStart_toStartOf="@id/step_indicator_circle_5"
-        app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_5"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <FrameLayout
+        <include
+            layout="@layout/toolbar_personalization"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/step_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="24dp">
+
+        <ImageView
+            android:id="@+id/step_indicator_circle_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/step_indicator_circle_active"
+            app:layout_constraintEnd_toStartOf="@id/line_step_1_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/indicator_1"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_1"
+            app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_1"
+            app:layout_constraintStart_toStartOf="@id/step_indicator_circle_1"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_1" />
+
+        <ImageView
+            android:id="@+id/line_step_1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_step_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_1"
+            app:layout_constraintEnd_toStartOf="@id/step_indicator_circle_2"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_1" />
+
+        <ImageView
+            android:id="@+id/step_indicator_circle_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/step_indicator_circle_inactive"
+            app:layout_constraintEnd_toStartOf="@id/line_step_2_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/indicator_2"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_2"
+            app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_2"
+            app:layout_constraintStart_toStartOf="@id/step_indicator_circle_2"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_2" />
+
+        <ImageView
+            android:id="@+id/line_step_2_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_step_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_2" />
+
+        <ImageView
+            android:id="@+id/step_indicator_circle_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/step_indicator_circle_inactive"
+            app:layout_constraintStart_toEndOf="@id/line_step_2_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/indicator_3"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_3"
+            app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_3"
+            app:layout_constraintStart_toStartOf="@id/step_indicator_circle_3"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_3" />
+
+        <ImageView
+            android:id="@+id/line_step_3_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_step_inactive"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_3"
+            app:layout_constraintStart_toEndOf="@id/step_indicator_circle_3"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_3" />
+
+        <ImageView
+            android:id="@+id/step_indicator_circle_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/step_indicator_circle_inactive"
+            app:layout_constraintStart_toEndOf="@id/line_step_3_4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/indicator_4"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/step_indicator_circle_4"
+            app:layout_constraintEnd_toEndOf="@id/step_indicator_circle_4"
+            app:layout_constraintStart_toStartOf="@id/step_indicator_circle_4"
+            app:layout_constraintTop_toTopOf="@id/step_indicator_circle_4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frame_container"
-        app:layout_constraintTop_toBottomOf="@id/step_indicator_circle_1"
+        app:layout_constraintTop_toBottomOf="@id/step_indicator"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

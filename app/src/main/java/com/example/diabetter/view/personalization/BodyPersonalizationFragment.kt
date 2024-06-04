@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.diabetter.R
+import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+
 class BodyPersonalizationFragment : Fragment() {
+    private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -17,7 +20,9 @@ class BodyPersonalizationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = (activity as PersonalizationActivity).retrieveBinding()
         binding.btnNext.setOnClickListener {
-            (activity as? PersonalizationActivity)?.navigateToNextFragment()
+            (activity as? PersonalizationActivity)?.nextStep()
         }
+        toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
+        toolbarBinding.tvTitle.text = getString(R.string.body_title)
     }
 }

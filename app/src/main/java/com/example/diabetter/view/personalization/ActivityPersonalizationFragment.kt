@@ -5,18 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.example.diabetter.R
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 
-class GenderPersonalizationFragment : Fragment() {
-    private lateinit var toolbarBinding : ToolbarPersonalizationBinding
-
+class ActivityPersonalizationFragment : Fragment() {
+    private lateinit var toolbarBinding: ToolbarPersonalizationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_gender_personalization, container, false)
+        return inflater.inflate(R.layout.fragment_activity_personalization, container, false)
     }
     override fun onViewCreated( view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,6 +23,6 @@ class GenderPersonalizationFragment : Fragment() {
             (activity as? PersonalizationActivity)?.nextStep()
         }
         toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
-        toolbarBinding.tvTitle.text = getString(R.string.gender_title)
+        toolbarBinding.tvTitle.text = getString(R.string.activity_title)
     }
 }
