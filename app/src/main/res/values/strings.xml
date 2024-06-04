@@ -15,4 +15,8 @@
     <string name="body_title">Body condition</string>
     <string name="activity_title">Activity</string>
     <string name="confirmation_title">Data Confirmation</string>
+    <string name="choose_gender">Choose your gender</string>
+    <string name="man">Man</string>
+    <string name="woman">woman</string>
+    <string name="continues">Continue</string>
 </resources>

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -16,10 +17,11 @@ import com.example.diabetter.databinding.ActivityPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 import com.example.diabetter.view.welcome.WelcomeActivity
 
-class PersonalizationActivity : AppCompatActivity() {
+class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private var touchWithinBounds = true
+    private lateinit var currentGender : String
     fun retrieveBinding(): ActivityPersonalizationBinding {
         return binding
     }
@@ -87,6 +89,12 @@ class PersonalizationActivity : AppCompatActivity() {
             startActivity(Intent(this, WelcomeActivity::class.java))
         }
     }
+
+    override fun onGenderChanged(gender: String) {
+        currentGender = gender
+        Log.d("Testt", "Gender: $currentGender")
+    }
+
     fun nextStep() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.frame_container)
 
@@ -98,6 +106,7 @@ class PersonalizationActivity : AppCompatActivity() {
                 .commit()
             setStepIndicatorState(binding.lineStep12, true, "line")
             setStepIndicatorState(binding.stepIndicatorCircle2, true, "circle")
+            Log.d("Testt", currentGender)
         } else if (currentFragment is BodyPersonalizationFragment) {
             val nextFragment = ActivityPersonalizationFragment()
             supportFragmentManager.beginTransaction()
