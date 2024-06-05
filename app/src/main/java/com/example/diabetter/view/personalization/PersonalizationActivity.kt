@@ -1,27 +1,26 @@
 package com.example.diabetter.view.personalization
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.diabetter.R
 import com.example.diabetter.databinding.ActivityPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
+import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
 import com.example.diabetter.view.welcome.WelcomeActivity
 
-class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
+class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private var touchWithinBounds = true
     private var currentGender : String? = null
+    private var currentActivity : String? = null
     fun retrieveBinding(): ActivityPersonalizationBinding {
         return binding
     }
@@ -95,6 +94,11 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
         Log.d("Testt", "Gender: $currentGender")
     }
 
+    override fun onChangeActivity(activity: String) {
+        currentActivity = activity
+        Log.d("Testt", "Activity :  $currentActivity" )
+    }
+
     fun nextStep() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.frame_container)
 
@@ -146,4 +150,5 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener {
             }
         }
     }
+
 }

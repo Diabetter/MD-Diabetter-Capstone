@@ -13,7 +13,7 @@
     <string name="indicator_4">4</string>
     <string name="gender_title">Gender</string>
     <string name="body_title">Body condition</string>
-    <string name="activity_title">Activity</string>
+    <string name="activity_title">Daily Activities</string>
     <string name="confirmation_title">Data Confirmation</string>
     <string name="choose_gender">Choose your gender</string>
     <string name="man">Man</string>
@@ -23,4 +23,8 @@
     <string name="age">Age</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
+    <string name="tv_activity_personalization">Please tell us your current daily activities based on this categories</string>
+    <string name="normal_activity">Normal activities (not doing workout)</string>
+    <string name="mid_activity">Strenuous activities (doing workout)</string>
+    <string name="high_activity">Very strenuous activities (athlete)</string>
 </resources>

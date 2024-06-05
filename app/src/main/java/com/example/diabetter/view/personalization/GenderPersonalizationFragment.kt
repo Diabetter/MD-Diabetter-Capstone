@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.RadioButton
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentGenderPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
 
 class GenderPersonalizationFragment : Fragment() {
 
@@ -62,8 +62,5 @@ class GenderPersonalizationFragment : Fragment() {
         } catch (e: ClassCastException) {
             throw ClassCastException("$context must implement GenderChangeListener")
         }
-    }
-    companion object {
-        const val EXTRA_GANDER = "extra_gender"
     }
 }
