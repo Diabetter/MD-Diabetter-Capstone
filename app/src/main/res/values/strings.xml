@@ -27,4 +27,6 @@
     <string name="normal_activity">Normal activities (not doing workout)</string>
     <string name="mid_activity">Strenuous activities (doing workout)</string>
     <string name="high_activity">Very strenuous activities (athlete)</string>
+    <string name="tv_confirm_personalization">Please make sure the data you have entered matches your current condition.</string>
+    <string name="daily_activity">Daily Activities</string>
 </resources>
