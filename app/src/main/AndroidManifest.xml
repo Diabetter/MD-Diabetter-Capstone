@@ -16,6 +16,10 @@
             android:name=".view.signup.SignUpActivity"
             android:exported="false" />
         <activity
+            android:name=".view.main.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+        <activity
             android:name=".view.personalization.PersonalizationActivity"
             android:exported="false"></activity>
         <activity
