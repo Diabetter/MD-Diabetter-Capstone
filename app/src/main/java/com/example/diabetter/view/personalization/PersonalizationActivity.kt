@@ -11,8 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.diabetter.R
 import com.example.diabetter.databinding.ActivityPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
 import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
+import com.example.diabetter.view.personalization.ui.ActivityPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.BodyPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.ConfirmPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.GenderPersonalizationFragment
 import com.example.diabetter.view.welcome.WelcomeActivity
 
 class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
@@ -151,4 +156,8 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
         }
     }
 
+
+    fun moveToMainActivity(){
+        startActivity(Intent(this, MainActivity::class.java))
+    }
 }

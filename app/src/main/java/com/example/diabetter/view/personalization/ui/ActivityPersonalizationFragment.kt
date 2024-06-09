@@ -1,4 +1,4 @@
-package com.example.diabetter.view.personalization
+package com.example.diabetter.view.personalization.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentActivityPersonalizationBinding
-import com.example.diabetter.databinding.FragmentGenderPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.view.personalization.PersonalizationActivity
 import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
-import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
 
 class ActivityPersonalizationFragment : Fragment() {
     private var _binding: FragmentActivityPersonalizationBinding? = null
