@@ -1,7 +1,19 @@
 <resources>
     <string name="app_name">Diabetter</string>
     <string name="start_now">Start Now</string>
-    <string name="have_account">I already have an account</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="tv_login_title">Welcome Back,</string>
+    <string name="tv_login_desc">Let’s continue your healthy journey!</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_confirm">Confirm Password</string>
+    <string name="tv_forgetPass">Forget Password?</string>
+    <string name="signin">Sign in</string>
+    <string name="btn_signinGoogle">Sign in with Google</string>
+    <string name="tv_dontHaveAcc">Don\'t have any account?</string>
+    <string name="signup">Sign up</string>
+    <string name="tv_signup_title">Welcome</string>
+    <string name="tv_signup_desc">Let’s start your healthy life journey!</string>
     <string name="tv_welcome_1">Ayo mulai hidup sehatmu dengan membuat menu sehat harian dengan DiaBetter!</string>
     <string name="tv_welcome2">Buat daftar menu harian sesuai dengan keinginan mu dengan DiaBetter!</string>
     <string name="tv_welcome3">Bagikan menu sehat rekomendasi mu kepada banyak orang di DiaBetter!</string>
@@ -16,8 +28,8 @@
     <string name="activity_title">Daily Activities</string>
     <string name="confirmation_title">Data Confirmation</string>
     <string name="choose_gender">Choose your gender</string>
-    <string name="man">Man</string>
-    <string name="woman">woman</string>
+    <string name="man">Male</string>
+    <string name="woman">Female</string>
     <string name="continues">Continue</string>
     <string name="tv_body_personalization">Please enter your current age, weight, and height.</string>
     <string name="age">Age</string>
@@ -29,4 +41,5 @@
     <string name="high_activity">Very strenuous activities (athlete)</string>
     <string name="tv_confirm_personalization">Please make sure the data you have entered matches your current condition.</string>
     <string name="daily_activity">Daily Activities</string>
+    <string name="tv_login">Login</string>
 </resources>

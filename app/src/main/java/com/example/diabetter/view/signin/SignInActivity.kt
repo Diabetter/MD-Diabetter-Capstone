@@ -1,21 +1,21 @@
 package com.example.diabetter.view.signin
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.diabetter.R
+import com.example.diabetter.databinding.ActivitySignInBinding
+import com.example.diabetter.view.signup.SignUpActivity
 
 class SignInActivity : AppCompatActivity() {
+    private lateinit var  binding: ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_in)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tvSignup.setOnClickListener{
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
+
     }
 }

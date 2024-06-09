@@ -13,7 +13,7 @@ import com.example.diabetter.databinding.ActivityPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
 import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
-import com.example.diabetter.view.welcome.WelcomeActivity
+import com.example.diabetter.view.signup.SignUpActivity
 
 class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding
@@ -85,7 +85,7 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         } else {
-            startActivity(Intent(this, WelcomeActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 

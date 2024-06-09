@@ -2,13 +2,10 @@ package com.example.diabetter.view.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.diabetter.R
 import com.example.diabetter.databinding.ActivityWelcomeBinding
-import com.example.diabetter.view.personalization.PersonalizationActivity
+import com.example.diabetter.view.signin.SignInActivity
+import com.example.diabetter.view.signup.SignUpActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -18,10 +15,10 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.start.setOnClickListener {
-            startActivity(Intent(this, PersonalizationActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
         binding.haveAccount.setOnClickListener {
-            startActivity(Intent(this, PersonalizationActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
         }
     }
 }

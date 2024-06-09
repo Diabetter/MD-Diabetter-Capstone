@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_500"
-    tools:context=".view.signin.SignInActivity">
+    tools:context=".view.signup.SignUpActivity">
 
     <RelativeLayout
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="1"
-        android:background="@drawable/big_background"/>
+        android:background="@drawable/big_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,24 +42,24 @@
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/tv_signin_title"
+                android:id="@+id/tv_signup_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_login_title"
+                android:text="@string/tv_signup_title"
                 android:textSize="@dimen/body_1"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_signin_desc"
+                android:id="@+id/tv_signup_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_login_desc"
+                android:text="@string/tv_signup_desc"
                 android:textSize="@dimen/body_5" />
 
             <View
                 android:id="@+id/view_1"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/tv_email"
@@ -75,7 +75,6 @@
                 android:layout_height="50dp"
                 android:background="@drawable/rounded_rectangle"
                 android:ems="10"
-                android:hint=""
                 android:inputType="textEmailAddress"
                 android:padding="15dp"
                 android:textSize="12sp" />
@@ -83,7 +82,7 @@
             <View
                 android:id="@+id/view_2"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/tv_password"
@@ -104,27 +103,40 @@
                 android:padding="15dp"
                 android:textSize="12sp" />
 
+            <View
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <TextView
-                android:id="@+id/tv_forgetPass"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_confirm"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:text="@string/tv_forgetPass"
-                android:textColor="@color/primary_700"
-                android:textSize="@dimen/body_6" />
+                android:text="@string/tv_confirm"
+                android:textSize="@dimen/body_3"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_rectangle"
+                android:drawableEnd="@drawable/eye_close_icon"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:textSize="12sp" />
 
             <View
                 android:id="@+id/view_4"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="20dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_signIn"
+                android:id="@+id/btn_signup"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="@string/signin"
+                android:text="@string/signup"
                 android:textColor="@color/white"
                 android:textSize="@dimen/body_3"
                 android:textStyle="bold"
@@ -173,28 +185,28 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_dontHaveAcc"
+                    android:id="@+id/tv_haveAcc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="78dp"
-                    android:text="@string/tv_dontHaveAcc" />
+                    android:layout_marginStart="70dp"
+                    android:text="@string/have_account" />
 
                 <TextView
-                    android:id="@+id/tv_signup"
+                    android:id="@+id/tv_signin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/tv_dontHaveAcc"
-                    android:text="@string/signup"
+                    android:layout_toEndOf="@+id/tv_haveAcc"
+                    android:text="@string/signin"
                     android:textColor="@color/primary_700" />
 
             </RelativeLayout>
 
             <View
-                android:id="@+id/view5"
+                android:id="@+id/view_8"
                 android:layout_width="match_parent"
-                android:layout_height="70dp" />
+                android:layout_height="30dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

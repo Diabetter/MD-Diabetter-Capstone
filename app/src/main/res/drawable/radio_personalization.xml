@@ -2,15 +2,15 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/primary_pink" />
+            <solid android:color="@color/primary_500" />
             <corners android:radius="4dp" />
         </shape>
     </item>
     <item android:state_checked="false">
         <shape android:shape="rectangle">
-            <solid android:color="@color/pink_200" />
+            <solid android:color="@color/primary_200" />
             <corners android:radius="4dp" />
-            <stroke android:width="1dp" android:color="@color/primary_pink" />
+            <stroke android:width="1dp" android:color="@color/primary_500" />
         </shape>
     </item>
 </selector>

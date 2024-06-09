@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.primary_pink)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.primary_500)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
             val splashIntent = Intent(this@SplashActivity, WelcomeActivity::class.java)
