@@ -86,12 +86,12 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
         }else if(currentFragment is ConfirmPersonalizationFragment){
             setStepIndicatorState(binding.lineStep34, false, "line")
             setStepIndicatorState(binding.stepIndicatorCircle4, false, "circle")
+        }else if(currentFragment is GenderPersonalizationFragment){
+            finish()
         }
 
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
-        } else {
-            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 
