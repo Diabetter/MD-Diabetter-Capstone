@@ -42,13 +42,19 @@
         app:boxBackgroundColor="@color/white"
        >
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_age"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck"
             android:background="@drawable/round_corner_toggle"
+            android:textColor="@android:color/black"
+            android:textColorHighlight="@color/primary_300"
+            android:textCursorDrawable="@null"
+            android:textSelectHandle="@color/primary_300"
+            android:textSelectHandleLeft="@color/primary_300"
+            android:textSelectHandleRight="@color/primary_300"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +88,12 @@
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck"
             android:background="@drawable/round_corner_toggle"
+            android:textColor="@android:color/black"
+            android:textColorHighlight="@color/primary_300"
+            android:textCursorDrawable="@null"
+            android:textSelectHandle="@color/primary_300"
+            android:textSelectHandleLeft="@color/primary_300"
+            android:textSelectHandleRight="@color/primary_300"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,6 +127,12 @@
             android:layout_height="match_parent"
             android:background="@drawable/round_corner_toggle"
             android:inputType="number"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            android:textColor="@android:color/black"
+            android:textColorHighlight="@color/primary_300"
+            android:textCursorDrawable="@null"
+            android:textSelectHandle="@color/primary_300"
+            android:textSelectHandleLeft="@color/primary_300"
+            android:textSelectHandleRight="@color/primary_300"/>
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,5 +7,5 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.Diabetter" parent="Base.Theme.Diabetter" />
+    <style name="Theme.Diabetter" parent="Base.Theme.Diabetter" />zz
 </resources>
