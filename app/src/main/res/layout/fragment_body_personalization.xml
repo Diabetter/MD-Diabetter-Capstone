@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_body_personalization"
         android:layout_marginTop="36dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:fontFamily="@font/poppins_semi_bold"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_body_personalization"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="28dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:fontFamily="@font/poppins_semi_bold"
         android:textSize="14sp"/>
 
@@ -34,19 +34,19 @@
         android:id="@+id/email_edit_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_age"
         app:hintEnabled="false"
+        app:boxBackgroundColor="@color/white"
        >
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/ed_age"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck"
             android:background="@drawable/round_corner_toggle"
             />
@@ -68,8 +68,7 @@
         android:id="@+id/weight_edit_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_weight"
@@ -80,7 +79,7 @@
             android:id="@+id/ed_weight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck"
             android:background="@drawable/round_corner_toggle"
             />
@@ -102,8 +101,7 @@
         android:id="@+id/height_edit_text_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_height"
@@ -115,9 +113,8 @@
             android:id="@+id/ed_height"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
-            tools:ignore="SpeakableTextPresentCheck"
             android:background="@drawable/round_corner_toggle"
-            />
+            android:inputType="number"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

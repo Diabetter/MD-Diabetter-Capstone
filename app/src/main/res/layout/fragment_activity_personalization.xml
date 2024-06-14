@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_activity_personalization"
         android:layout_marginTop="36dp"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_activity_personalization"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:layout_marginTop="32dp"
         android:paddingBottom="48dp">
         <RadioButton
