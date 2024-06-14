@@ -36,11 +36,15 @@ class GenderPersonalizationFragment : Fragment() {
 
         radioButtonMan.setOnClickListener {
             radioButtonWoman.isChecked = false
+            radioButtonMan.alpha = 1f
+            radioButtonWoman.alpha = 0.5f
             genderChangeListener.onGenderChanged("Pria")
         }
 
         radioButtonWoman.setOnClickListener {
             radioButtonMan.isChecked = false
+            radioButtonWoman.alpha = 1f
+            radioButtonMan.alpha = 0.5f
             genderChangeListener.onGenderChanged("Wanita")
         }
 
