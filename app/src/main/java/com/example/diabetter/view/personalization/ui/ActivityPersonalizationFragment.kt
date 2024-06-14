@@ -20,8 +20,6 @@ class ActivityPersonalizationFragment : Fragment() {
 
     private lateinit var activityChangeListener: ActivityChangeListener
 
-    private lateinit var radioGroup: RadioGroup
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -28,13 +28,14 @@ class GenderPersonalizationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGenderPersonalizationBinding.inflate(inflater, container, false)
+        _binding = _binding ?: FragmentGenderPersonalizationBinding.inflate(inflater, container, false)
         val view = binding.root
 
         radioButtonMan = binding.ivMan
         radioButtonWoman = binding.ivWoman
 
         radioButtonMan.setOnClickListener {
+            radioButtonMan.isChecked = true
             radioButtonWoman.isChecked = false
             radioButtonMan.alpha = 1f
             radioButtonWoman.alpha = 0.5f
@@ -42,6 +43,7 @@ class GenderPersonalizationFragment : Fragment() {
         }
 
         radioButtonWoman.setOnClickListener {
+            radioButtonWoman.isChecked = true
             radioButtonMan.isChecked = false
             radioButtonWoman.alpha = 1f
             radioButtonMan.alpha = 0.5f
@@ -58,6 +60,8 @@ class GenderPersonalizationFragment : Fragment() {
         }
         toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
         toolbarBinding.tvTitle.text = getString(R.string.gender_title)
+
+        updateRadioButtonAlpha()
     }
 
     override fun onAttach(context: Context) {
@@ -66,6 +70,19 @@ class GenderPersonalizationFragment : Fragment() {
             genderChangeListener = context as GenderChangeListener
         } catch (e: ClassCastException) {
             throw ClassCastException("$context must implement GenderChangeListener")
+        }
+    }
+
+    private fun updateRadioButtonAlpha() {
+        if (radioButtonMan.isChecked) {
+            radioButtonMan.alpha = 1f
+            radioButtonWoman.alpha = 0.5f
+        } else if (radioButtonWoman.isChecked) {
+            radioButtonWoman.alpha = 1f
+            radioButtonMan.alpha = 0.5f
+        } else {
+            radioButtonMan.alpha = 0.5f
+            radioButtonWoman.alpha = 0.5f
         }
     }
 }

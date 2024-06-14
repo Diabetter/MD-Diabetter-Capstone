@@ -37,7 +37,6 @@
             android:background="@drawable/man"
             android:width="130dp"
             android:button="@android:color/transparent"
-            android:alpha="0.5"
             />
         <RadioButton
             android:id="@+id/iv_woman"
@@ -48,7 +47,6 @@
             android:background="@drawable/woman"
             android:width="130dp"
             android:button="@android:color/transparent"
-            android:alpha="0.5"
              />
         <TextView
             android:id="@+id/tv_man"

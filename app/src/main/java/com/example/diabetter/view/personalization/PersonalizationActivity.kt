@@ -1,6 +1,7 @@
 package com.example.diabetter.view.personalization
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -71,6 +72,13 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
         toolbarBinding.backBtn.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
     }
 
     @SuppressLint("MissingSuperCall")
