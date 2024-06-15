@@ -40,6 +40,9 @@ class ConfirmPersonalizationFragment : Fragment() {
         val parentActivity = activity as? PersonalizationActivity
         parentActivity?.apply {
             val binding = retrieveBinding()
+            binding.btnNext.setOnClickListener {
+                moveToMainActivity()
+            }
             toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
             toolbarBinding.tvTitle.text = getString(R.string.confirmation_title)
         }
