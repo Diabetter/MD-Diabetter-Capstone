@@ -10,12 +10,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentBodyPersonalizationBinding
+import com.example.diabetter.databinding.FragmentGenderPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.personalization.PersonalizationActivity
 
 class BodyPersonalizationFragment : Fragment() {
-    private lateinit var binding: FragmentBodyPersonalizationBinding
+    private var _binding: FragmentBodyPersonalizationBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: BodyPersonalizationViewModel
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
 
@@ -23,8 +25,10 @@ class BodyPersonalizationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBodyPersonalizationBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentBodyPersonalizationBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

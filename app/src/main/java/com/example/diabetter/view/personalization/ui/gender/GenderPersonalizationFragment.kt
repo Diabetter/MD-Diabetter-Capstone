@@ -13,7 +13,6 @@ import com.example.diabetter.databinding.FragmentGenderPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.personalization.PersonalizationActivity
-import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
 import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationViewModel
 
 class GenderPersonalizationFragment : Fragment() {
@@ -26,13 +25,11 @@ class GenderPersonalizationFragment : Fragment() {
     private lateinit var radioButtonMan: RadioButton
     private lateinit var radioButtonWoman: RadioButton
 
-    private lateinit var genderChangeListener: GenderChangeListener
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = _binding ?: FragmentGenderPersonalizationBinding.inflate(inflater, container, false)
+        _binding = FragmentGenderPersonalizationBinding.inflate(inflater, container, false)
         val view = binding.root
 
         radioButtonMan = binding.ivMan
@@ -44,7 +41,6 @@ class GenderPersonalizationFragment : Fragment() {
             radioButtonMan.alpha = 1f
             radioButtonWoman.alpha = 0.5f
             viewModel.saveGender("Male")
-//            genderChangeListener.onGenderChanged("Pria")
         }
 
         radioButtonWoman.setOnClickListener {
@@ -53,7 +49,6 @@ class GenderPersonalizationFragment : Fragment() {
             radioButtonWoman.alpha = 1f
             radioButtonMan.alpha = 0.5f
             viewModel.saveGender("Female")
-//            genderChangeListener.onGenderChanged("Wanita")
         }
 
         return view
@@ -63,24 +58,17 @@ class GenderPersonalizationFragment : Fragment() {
 
         viewModel = ObtainViewModelFactory.obtainPersonalizationFactory(requireContext())
 
-        val binding = (activity as PersonalizationActivity).retrieveBinding()
-        binding.btnNext.setOnClickListener {
-            (activity as? PersonalizationActivity)?.nextStep()
-            Log.d("Testt",viewModel.getGenderValue())
+        val parentActivity = activity as? PersonalizationActivity
+        parentActivity?.apply {
+            val binding = retrieveBinding()
+            binding.btnNext.setOnClickListener {
+                nextStep()
+            }
+            toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
+            toolbarBinding.tvTitle.text = getString(R.string.body_title)
         }
-        toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
-        toolbarBinding.tvTitle.text = getString(R.string.gender_title)
 
         updateRadioButtonAlpha()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            genderChangeListener = context as GenderChangeListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement GenderChangeListener")
-        }
     }
 
     private fun updateRadioButtonAlpha() {

@@ -18,6 +18,8 @@ class PersonalizationPreference private constructor(private val dataStore: DataS
     private val weight = intPreferencesKey("weightPersonalization")
     private val height = intPreferencesKey("heightPersonalization")
 
+    private val activity = stringPreferencesKey("activityPersonalization")
+
     suspend fun saveGender(genderValue : String){
         dataStore.edit { preferences ->
             preferences[gender] = genderValue
@@ -48,6 +50,27 @@ class PersonalizationPreference private constructor(private val dataStore: DataS
         }
     }
 
+    suspend fun saveActivity(activityValue : String){
+        dataStore.edit { preferences ->
+            preferences[activity] = activityValue
+        }
+    }
+
+    fun getActivity() : Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[activity] ?: ""
+        }
+    }
+
+    suspend fun deleteAllPreferences() {
+        dataStore.edit { preferences ->
+            preferences[gender] = ""
+            preferences[age] = 0
+            preferences[weight] = 0
+            preferences[height] = 0
+            preferences[activity] = ""
+        }
+    }
 
     companion object {
         @Volatile

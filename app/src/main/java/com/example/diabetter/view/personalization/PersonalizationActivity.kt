@@ -12,20 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.diabetter.R
 import com.example.diabetter.databinding.ActivityPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.main.MainActivity
-import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
-import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
-import com.example.diabetter.view.personalization.ui.ActivityPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.activity.ActivityPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationFragment
-import com.example.diabetter.view.personalization.ui.ConfirmPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.confirm.ConfirmPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.gender.GenderPersonalizationFragment
 
-class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
+class PersonalizationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPersonalizationBinding
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private var touchWithinBounds = true
-    private var currentGender : String? = null
-    private var currentActivity : String? = null
+    private lateinit var viewModel: PersonalizationActivityViewModel
     fun retrieveBinding(): ActivityPersonalizationBinding {
         return binding
     }
@@ -33,6 +31,7 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ObtainViewModelFactory.obtainPersonalizationFactory(this)
         binding = ActivityPersonalizationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportFragmentManager.beginTransaction()
@@ -74,9 +73,8 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
 
     override fun onDestroy() {
         super.onDestroy()
-
-        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit().clear().apply()
+        viewModel.deleteAllPreferences()
+        Log.d("Testt", "YA")
     }
 
     @SuppressLint("MissingSuperCall")
@@ -99,16 +97,6 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         }
-    }
-
-    override fun onGenderChanged(gender: String) {
-        currentGender = gender
-        Log.d("Testt", "Gender: $currentGender")
-    }
-
-    override fun onChangeActivity(activity: String) {
-        currentActivity = activity
-        Log.d("Testt", "Activity :  $currentActivity" )
     }
 
     fun nextStep() {
@@ -162,7 +150,6 @@ class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, Activ
             }
         }
     }
-
 
     fun moveToMainActivity(){
         startActivity(Intent(this, MainActivity::class.java))

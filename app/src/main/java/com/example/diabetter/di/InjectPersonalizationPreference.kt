@@ -8,6 +8,6 @@ import com.example.diabetter.data.repository.PersonalizationRepository
 object InjectPersonalizationPreference {
     fun provideRepository(context : Context) : PersonalizationRepository{
         val pref = PersonalizationPreference.getInstance(context.dataStore)
-        return PersonalizationRepository(pref)
+        return PersonalizationRepository.getInstance(pref)
     }
 }
