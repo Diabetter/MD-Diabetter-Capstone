@@ -15,12 +15,10 @@ import com.example.diabetter.databinding.ToolbarPersonalizationBinding
 import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.personalization.interfaces.ActivityChangeListener
 import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
-import com.example.diabetter.view.signup.SignUpActivity
 import com.example.diabetter.view.personalization.ui.ActivityPersonalizationFragment
-import com.example.diabetter.view.personalization.ui.BodyPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.ConfirmPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.GenderPersonalizationFragment
-import com.example.diabetter.view.welcome.WelcomeActivity
 
 class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding

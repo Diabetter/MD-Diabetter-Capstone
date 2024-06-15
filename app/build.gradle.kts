@@ -55,4 +55,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.androidx.fragment)
+
+    //datastore
+    implementation(libs.androidx.datastore)
 }
