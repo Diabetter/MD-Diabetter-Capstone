@@ -8,6 +8,9 @@ import kotlinx.coroutines.launch
 class BodyPersonalizationViewModel(
     private val personalizationRepository: PersonalizationRepository
 ) : ViewModel() {
+    init {
+        getBodyCondition()
+    }
     private var age: Int = 0
     private var weight: Int = 0
     private var height: Int = 0
@@ -17,7 +20,7 @@ class BodyPersonalizationViewModel(
         }
     }
 
-    fun getBodyCondition(){
+    private fun getBodyCondition(){
         viewModelScope.launch {
             personalizationRepository.getBodyCondition().collect { (ageValue, weightValue, heightValue) ->
                 age = ageValue

@@ -16,10 +16,7 @@ import com.example.diabetter.view.personalization.PersonalizationActivity
 
 class BodyPersonalizationFragment : Fragment() {
     private lateinit var binding: FragmentBodyPersonalizationBinding
-    private lateinit var sharedPreferences: SharedPreferences
-
     private lateinit var viewModel: BodyPersonalizationViewModel
-
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
 
     override fun onCreateView(
@@ -72,8 +69,6 @@ class BodyPersonalizationFragment : Fragment() {
     }
 
     private fun restoreEditTextValues() {
-        viewModel.getBodyCondition()
-
         binding.edAge.setText(viewModel.getAge().toString())
         binding.edWeight.setText(viewModel.getWeight().toString())
         binding.edHeight.setText(viewModel.getHeight().toString())

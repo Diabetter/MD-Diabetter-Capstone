@@ -1,7 +1,8 @@
-package com.example.diabetter.view.personalization.ui
+package com.example.diabetter.view.personalization.ui.gender
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +11,17 @@ import android.widget.RadioButton
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentGenderPersonalizationBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.personalization.PersonalizationActivity
 import com.example.diabetter.view.personalization.interfaces.GenderChangeListener
+import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationViewModel
 
 class GenderPersonalizationFragment : Fragment() {
 
     private var _binding: FragmentGenderPersonalizationBinding? = null
     private val binding get() = _binding!!
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
+    private lateinit var viewModel: GenderPersonalizationViewModel
 
     private lateinit var radioButtonMan: RadioButton
     private lateinit var radioButtonWoman: RadioButton
@@ -39,7 +43,8 @@ class GenderPersonalizationFragment : Fragment() {
             radioButtonWoman.isChecked = false
             radioButtonMan.alpha = 1f
             radioButtonWoman.alpha = 0.5f
-            genderChangeListener.onGenderChanged("Pria")
+            viewModel.saveGender("Male")
+//            genderChangeListener.onGenderChanged("Pria")
         }
 
         radioButtonWoman.setOnClickListener {
@@ -47,16 +52,21 @@ class GenderPersonalizationFragment : Fragment() {
             radioButtonMan.isChecked = false
             radioButtonWoman.alpha = 1f
             radioButtonMan.alpha = 0.5f
-            genderChangeListener.onGenderChanged("Wanita")
+            viewModel.saveGender("Female")
+//            genderChangeListener.onGenderChanged("Wanita")
         }
 
         return view
     }
     override fun onViewCreated( view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ObtainViewModelFactory.obtainPersonalizationFactory(requireContext())
+
         val binding = (activity as PersonalizationActivity).retrieveBinding()
         binding.btnNext.setOnClickListener {
             (activity as? PersonalizationActivity)?.nextStep()
+            Log.d("Testt",viewModel.getGenderValue())
         }
         toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
         toolbarBinding.tvTitle.text = getString(R.string.gender_title)

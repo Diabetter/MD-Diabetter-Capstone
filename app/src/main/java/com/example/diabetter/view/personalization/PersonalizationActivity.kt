@@ -18,7 +18,7 @@ import com.example.diabetter.view.personalization.interfaces.GenderChangeListene
 import com.example.diabetter.view.personalization.ui.ActivityPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.ConfirmPersonalizationFragment
-import com.example.diabetter.view.personalization.ui.GenderPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.gender.GenderPersonalizationFragment
 
 class PersonalizationActivity : AppCompatActivity(), GenderChangeListener, ActivityChangeListener {
     private lateinit var binding: ActivityPersonalizationBinding

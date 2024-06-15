@@ -6,14 +6,30 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "personalization_preference")
 class PersonalizationPreference private constructor(private val dataStore: DataStore<Preferences>){
+    private val gender = stringPreferencesKey("genderPersonalization")
+
     private val age = intPreferencesKey("agePersonalization")
     private val weight = intPreferencesKey("weightPersonalization")
     private val height = intPreferencesKey("heightPersonalization")
+
+    suspend fun saveGender(genderValue : String){
+        dataStore.edit { preferences ->
+            preferences[gender] = genderValue
+        }
+    }
+
+    fun getGender() : Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[gender] ?: ""
+        }
+    }
+
     suspend fun saveBodyCondition(ageValue : Int, weightValue : Int, heightValue : Int){
         dataStore.edit { preferences ->
             preferences[age] = ageValue
@@ -31,6 +47,7 @@ class PersonalizationPreference private constructor(private val dataStore: DataS
             )
         }
     }
+
 
     companion object {
         @Volatile
