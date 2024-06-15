@@ -10,18 +10,14 @@ import kotlinx.coroutines.launch
 class ConfirmPersonalizationViewModel(
     private val personalizationRepository: PersonalizationRepository
 ) : ViewModel () {
-    init{
-        getGender()
-        getBodyCondition()
-        getActivity()
-    }
+
     private var gender : String = ""
     private var age: Int = 0
     private var weight: Int = 0
     private var height: Int = 0
     private var activity : String = ""
 
-    private fun getGender(){
+     fun getGender(){
         viewModelScope.launch {
             personalizationRepository.getGender().collect { genderValue ->
                 gender = genderValue
@@ -29,7 +25,7 @@ class ConfirmPersonalizationViewModel(
         }
     }
 
-    private fun getBodyCondition(){
+     fun getBodyCondition(){
         viewModelScope.launch {
             personalizationRepository.getBodyCondition().collect { (ageValue, weightValue, heightValue) ->
                 age = ageValue
@@ -39,7 +35,7 @@ class ConfirmPersonalizationViewModel(
         }
     }
 
-    private fun getActivity(){
+     fun getActivity(){
         viewModelScope.launch {
             personalizationRepository.getActivity().collect{activityValue ->
                 activity = activityValue

@@ -16,6 +16,7 @@ import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.personalization.ui.activity.ActivityPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationFragment
+import com.example.diabetter.view.personalization.ui.body.BodyPersonalizationViewModel
 import com.example.diabetter.view.personalization.ui.confirm.ConfirmPersonalizationFragment
 import com.example.diabetter.view.personalization.ui.gender.GenderPersonalizationFragment
 
@@ -71,10 +72,9 @@ class PersonalizationActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun finish() {
+        super.finish()
         viewModel.deleteAllPreferences()
-        Log.d("Testt", "YA")
     }
 
     @SuppressLint("MissingSuperCall")

@@ -20,6 +20,8 @@ class ActivityPersonalizationFragment : Fragment() {
     private lateinit var toolbarBinding: ToolbarPersonalizationBinding
     private lateinit var viewModel: ActivityPersonalizationViewModel
 
+    private var activitys : String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +32,18 @@ class ActivityPersonalizationFragment : Fragment() {
         val radioGroup = binding.rgActivity
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.radio_normal_activities -> viewModel.saveActivity("Normal")
-                R.id.radio_mid_activity -> viewModel.saveActivity("Medium")
-                R.id.radio_high_activity -> viewModel.saveActivity("High")
+                R.id.radio_normal_activities -> {
+                    activitys = "Normal"
+                    viewModel.saveActivity(activitys)
+                }
+                R.id.radio_mid_activity -> {
+                    activitys = "Medium"
+                    viewModel.saveActivity(activitys)
+                }
+                R.id.radio_high_activity -> {
+                    activitys = "High"
+                    viewModel.saveActivity(activitys)
+                }
                 else -> ""
             }
         }
@@ -49,9 +60,32 @@ class ActivityPersonalizationFragment : Fragment() {
             val binding = retrieveBinding()
             binding.btnNext.setOnClickListener {
                 nextStep()
+                viewModel.saveActivity(activitys)
             }
             toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
-            toolbarBinding.tvTitle.text = getString(R.string.body_title)
+            toolbarBinding.tvTitle.text = getString(R.string.activity_title)
+        }
+        
+        fetchData()
+        restoreActivity()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.saveActivity(activitys)
+    }
+
+    private fun fetchData(){
+        viewModel.getActivity()
+    }
+
+    private fun restoreActivity() {
+        if (viewModel.getActivityValue() == "Normal"){
+            binding.radioNormalActivities.isChecked = true
+        } else if (viewModel.getActivityValue() == "Medium"){
+            binding.radioMidActivity.isChecked = true
+        } else if (viewModel.getActivityValue() == "High"){
+            binding.radioHighActivity.isChecked = true
         }
     }
 }

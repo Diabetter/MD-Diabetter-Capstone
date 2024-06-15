@@ -2,6 +2,7 @@ package com.example.diabetter.view.personalization.ui.confirm
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ class ConfirmPersonalizationFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private lateinit var viewModel: ConfirmPersonalizationViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,14 +40,17 @@ class ConfirmPersonalizationFragment : Fragment() {
         val parentActivity = activity as? PersonalizationActivity
         parentActivity?.apply {
             val binding = retrieveBinding()
-            binding.btnNext.setOnClickListener {
-                nextStep()
-            }
             toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
-            toolbarBinding.tvTitle.text = getString(R.string.body_title)
+            toolbarBinding.tvTitle.text = getString(R.string.confirmation_title)
         }
 
+        fetchData()
         bindValue()
+    }
+    private fun fetchData() {
+        viewModel.getGender()
+        viewModel.getBodyCondition()
+        viewModel.getActivity()
     }
 
     private fun bindValue() {

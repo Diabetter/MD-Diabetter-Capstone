@@ -41,6 +41,7 @@ class BodyPersonalizationFragment : Fragment() {
             val binding = retrieveBinding()
             binding.btnNext.setOnClickListener {
                 nextStep()
+                saveEditTextValues()
             }
             toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
             toolbarBinding.tvTitle.text = getString(R.string.body_title)

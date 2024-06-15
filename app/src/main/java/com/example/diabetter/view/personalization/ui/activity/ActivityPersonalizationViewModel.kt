@@ -8,9 +8,6 @@ import kotlinx.coroutines.launch
 class ActivityPersonalizationViewModel (
     private val personalizationRepository: PersonalizationRepository
 ) : ViewModel() {
-    init {
-        getActivity()
-    }
 
     private var activity : String = ""
 
@@ -20,7 +17,7 @@ class ActivityPersonalizationViewModel (
         }
     }
 
-    private fun getActivity(){
+    fun getActivity(){
         viewModelScope.launch {
             personalizationRepository.getActivity().collect{activityValue ->
                 activity = activityValue
@@ -28,8 +25,6 @@ class ActivityPersonalizationViewModel (
         }
     }
 
-    fun getActivityValue(): String{
-        return activity
-    }
+    fun getActivityValue(): String = activity
 
 }

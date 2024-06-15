@@ -63,12 +63,8 @@ class PersonalizationPreference private constructor(private val dataStore: DataS
     }
 
     suspend fun deleteAllPreferences() {
-        dataStore.edit { preferences ->
-            preferences[gender] = ""
-            preferences[age] = 0
-            preferences[weight] = 0
-            preferences[height] = 0
-            preferences[activity] = ""
+        dataStore.edit {
+            it.clear()
         }
     }
 
