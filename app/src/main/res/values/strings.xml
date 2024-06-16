@@ -48,4 +48,11 @@
     <string name="title_notifications">Notifications</string>
     <string name="hello_home">Hello,</string>
     <string name="home_username">Username</string>
+    <string name="your_menu_today">Your menu today!</string>
+    <string name="callorie_level">2000</string>
+    <string name="callorie">calories</string>
+    <string name="see_detail">See detail</string>
+    <string name="recommendation_food_for_you">Recommendation food for you</string>
+    <string name="discover_other_foods">Discover other foods</string>
+    <string name="see_more">See more</string>
 </resources>

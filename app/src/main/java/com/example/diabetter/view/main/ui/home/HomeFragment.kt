@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentHomeBinding
+import com.example.diabetter.view.main.ui.home.adapter.RecommendationMenuAdapter
 
 class HomeFragment : Fragment() {
 
@@ -18,20 +22,17 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        // Set up RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_recommendation_menu)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = RecommendationMenuAdapter(5)  // Menampilkan 5 item
 
-//        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-        }
-        return root
+        return view
     }
 
     override fun onDestroyView() {
