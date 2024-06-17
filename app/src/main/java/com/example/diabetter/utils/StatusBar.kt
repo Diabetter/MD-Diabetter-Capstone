@@ -30,10 +30,10 @@ object StatusBar {
         }
     }
 
-    fun addStatusBarMargin(activity: Activity, view: View) {
+    fun addStatusBarMargin(activity: Activity, view: View, marginTop : Int) {
         val statusBarHeight = getStatusBarHeight(activity)
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.setMargins(0, statusBarHeight+32, 0, 0)
+        layoutParams.setMargins(0, statusBarHeight+marginTop, 0, 0)
         view.layoutParams = layoutParams
     }
 

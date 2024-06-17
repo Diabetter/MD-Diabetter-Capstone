@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.example.diabetter.utils.StatusBar
 import com.example.diabetter.view.detail_menu.DetailMenuActivity
 import com.example.diabetter.adapter.RecommendationMenuAdapter
 import com.example.diabetter.adapter.setupRecyclerView
+import com.example.diabetter.view.main.RefreshFragment
 
 class HomeFragment : Fragment() {
 
@@ -38,8 +40,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         menuTodayMenuBinding = binding.menuToday
-        StatusBar.addStatusBarMargin(requireActivity(), binding.tvHello)
-        StatusBar.addStatusBarMargin(requireActivity(), binding.ivSave)
+        StatusBar.addStatusBarMargin(requireActivity(), binding.tvHello, 32)
+        StatusBar.addStatusBarMargin(requireActivity(), binding.ivSave, 32)
 //        val ratingBar = view.findViewById<RatingBar>(R.id.rating)
 //
 //        // Atur nilai rating
@@ -58,6 +60,11 @@ class HomeFragment : Fragment() {
                 val intent = Intent(requireContext(), DetailMenuActivity::class.java)
                 startActivity(intent)
             }
+        }
+
+        binding.tvRefresh2.setOnClickListener {
+            val showPopUpRefresh = RefreshFragment()
+            showPopUpRefresh.show((activity as AppCompatActivity).supportFragmentManager, "RefreshFragment")
         }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_recommendation_menu)

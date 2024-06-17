@@ -59,4 +59,5 @@
     <string name="text_refresh2"><u>Click here</u></string>
     <string name="text_refresh3">to</string>
     <string name="text_refresh4">refresh the menu!</string>
+    <string name="set_filter">Set your filter rating before refreshing</string>
 </resources>
