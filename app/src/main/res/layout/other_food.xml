@@ -26,14 +26,68 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/primary_100"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/black"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                card_view:layout_constraintTop_toTopOf="parent"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                android:textSize="@dimen/body_6" />
+
+                            <TextView
+                                android:id="@+id/tv_callorie1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:layout_constraintStart_toEndOf="@id/tv_callories1"
+                                card_view:layout_constraintTop_toTopOf="@id/tv_callories1"
+                                card_view:layout_constraintBottom_toBottomOf="@id/tv_callories1"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/black"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="1dp"
+                                android:textSize="@dimen/body_6"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
                     <ImageView
                         android:id="@+id/iv_today_menu1"
                         android:layout_width="112dp"
                         android:layout_height="112dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/foodpicts_517"
-                        card_view:layout_constraintTop_toTopOf="parent"
                         card_view:layout_constraintStart_toStartOf="parent"
-                        android:scaleType="centerCrop"/>
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -78,6 +132,52 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/secondary_900"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+
+                            <TextView
+                                android:id="@+id/tv_callorie2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                     <ImageView
                         android:id="@+id/iv_today_menu2"
                         android:layout_width="112dp"
@@ -130,6 +230,52 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/secondary_900"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+
+                            <TextView
+                                android:id="@+id/tv_callorie3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                     <ImageView
                         android:id="@+id/iv_today_menu3"
                         android:layout_width="112dp"
@@ -182,6 +328,52 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/secondary_900"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+
+                            <TextView
+                                android:id="@+id/tv_callorie4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                     <ImageView
                         android:id="@+id/iv_today_menu4"
                         android:layout_width="112dp"
@@ -233,6 +425,52 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/secondary_900"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+
+                            <TextView
+                                android:id="@+id/tv_callorie5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                     <ImageView
                         android:id="@+id/iv_today_menu5"
                         android:layout_width="112dp"
@@ -286,6 +524,52 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rating_layout6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/secondary_900"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        card_view:cardElevation="0dp"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        android:translationZ="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_callories6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="1000"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+
+                            <TextView
+                                android:id="@+id/tv_callorie6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:includeFontPadding="false"
+                                android:text="@string/callories"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textSize="@dimen/body_6"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                     <ImageView
                         android:id="@+id/iv_today_menu6"
                         android:layout_width="112dp"

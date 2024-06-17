@@ -60,4 +60,7 @@
     <string name="text_refresh3">to</string>
     <string name="text_refresh4">refresh the menu!</string>
     <string name="set_filter">Set your filter rating before refreshing</string>
+    <string name="callories">calories</string>
+    <string name="refresh">Refresh</string>
+    <string name="cancel">Cancel</string>
 </resources>
