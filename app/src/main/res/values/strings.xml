@@ -55,4 +55,8 @@
     <string name="recommendation_food_for_you">Recommendation food for you</string>
     <string name="discover_other_foods">Discover other foods</string>
     <string name="see_more">See more</string>
+    <string name="fourfive_stars">4.5</string>
+    <string name="popular_menus_title">Popular Menus</string>
+    <string name="popular_menus_desc">Lets try menu that already help many peoples</string>
+
 </resources>
