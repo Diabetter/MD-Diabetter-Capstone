@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         binding.rvRecommendationMenu.adapter = RecommendationMenuAdapter(5)
 
         menuTodayMenuBinding.apply {
-            btnSeeDetail.setOnClickListener {
+            tvSeeDetail.setOnClickListener {
                 val intent = Intent(requireContext(), DetailMenuActivity::class.java)
                 startActivity(intent)
             }
