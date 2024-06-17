@@ -37,4 +37,5 @@
     <color name="error_900">#781C1C</color>
     <color name="tetriary">#838383</color>
     <color name="rating">#DFB300</color>
+    <color name="transparent">#00000000</color>">
 </resources>

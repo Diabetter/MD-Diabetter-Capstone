@@ -52,7 +52,11 @@
     <string name="callorie_level">2000</string>
     <string name="callorie">calories</string>
     <string name="see_detail">See detail</string>
-    <string name="recommendation_food_for_you">Recommendation food for you</string>
+    <string name="recommendation_food_for_you">Recommended for you</string>
     <string name="discover_other_foods">Discover other foods</string>
     <string name="see_more">See more</string>
+    <string name="text_refresh1">Feeling unsatisfied?</string>
+    <string name="text_refresh2"><u>Click here</u></string>
+    <string name="text_refresh3">to</string>
+    <string name="text_refresh4">refresh the menu!</string>
 </resources>

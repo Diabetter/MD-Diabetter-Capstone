@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentHomeBinding
 import com.example.diabetter.databinding.TodayMenuBinding
+import com.example.diabetter.utils.StatusBar
 import com.example.diabetter.view.detail_menu.DetailMenuActivity
-import com.example.diabetter.view.main.ui.home.adapter.RecommendationMenuAdapter
+import com.example.diabetter.adapter.RecommendationMenuAdapter
+import com.example.diabetter.adapter.setupRecyclerView
 
 class HomeFragment : Fragment() {
 
@@ -36,6 +38,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         menuTodayMenuBinding = binding.menuToday
+        StatusBar.addStatusBarMargin(requireActivity(), binding.tvHello)
+        StatusBar.addStatusBarMargin(requireActivity(), binding.ivSave)
 //        val ratingBar = view.findViewById<RatingBar>(R.id.rating)
 //
 //        // Atur nilai rating
@@ -55,10 +59,17 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.rv_recommendation_menu)
+        setupRecyclerView(recyclerView, MENU_RECOMMENDATION_COUNT)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val MENU_RECOMMENDATION_COUNT = 5
     }
 }
