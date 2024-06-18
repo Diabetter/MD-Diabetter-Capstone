@@ -195,33 +195,33 @@
                         android:id="@+id/circle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:src="@drawable/active_circle" />
                     <ImageView
                         android:id="@+id/circle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginHorizontal="2dp"
                         android:src="@drawable/inactive_circle" />
                     <ImageView
                         android:id="@+id/circle3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:src="@drawable/inactive_circle" />
                     <ImageView
                         android:id="@+id/circle4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginHorizontal="2dp"
                         android:src="@drawable/inactive_circle" />
                     <ImageView
                         android:id="@+id/circle5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:src="@drawable/inactive_circle" />
                 </LinearLayout>
 
@@ -255,9 +255,10 @@
                 <include
                     android:id="@+id/other_food"
                     layout="@layout/other_food"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_discover" />

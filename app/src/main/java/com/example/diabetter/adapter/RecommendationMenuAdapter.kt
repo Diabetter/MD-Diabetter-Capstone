@@ -79,6 +79,7 @@ fun findMostVisibleItem(
 
     var maxVisibleWidth = 0
     var mostVisibleItemPosition = -1
+    var lastMostVisibleItemPosition = -1
 
     for (i in firstVisibleItemPosition..lastVisibleItemPosition) {
         val view = layoutManager.findViewByPosition(i) ?: continue
@@ -94,8 +95,9 @@ fun findMostVisibleItem(
         }
     }
 
-    if (mostVisibleItemPosition != -1) {
-//        Log.d("RecommendationMenuAdapter", "Most visible item position: $mostVisibleItemPosition")
+    if (mostVisibleItemPosition != -1 && mostVisibleItemPosition != lastMostVisibleItemPosition) {
+        lastMostVisibleItemPosition = mostVisibleItemPosition
+        Log.d("RecommendationMenuAdapter", "Most visible item position: $mostVisibleItemPosition")
         onMostVisibleItemChanged(mostVisibleItemPosition)
     }
 }

@@ -19,7 +19,7 @@ import com.example.diabetter.adapter.setupRecyclerView
 import com.example.diabetter.data.MenuData
 import com.example.diabetter.databinding.OtherFoodBinding
 import com.example.diabetter.view.detail_food.DetailFoodActivity
-import com.example.diabetter.view.main.RefreshFragment
+import com.example.diabetter.view.custom_alert.RefreshFragment
 
 class HomeFragment : Fragment() {
 
@@ -102,25 +102,33 @@ class HomeFragment : Fragment() {
                     if (mostVisibleItemPosition == 0) R.drawable.active_circle
                     else R.drawable.inactive_circle
                 )
+                circle1.requestLayout()
+
                 circle2.setImageResource(
                     if (mostVisibleItemPosition == 1) R.drawable.active_circle
                     else R.drawable.inactive_circle
                 )
+                circle2.requestLayout()
+
                 circle3.setImageResource(
                     if (mostVisibleItemPosition == 2) R.drawable.active_circle
                     else R.drawable.inactive_circle
                 )
+                circle3.requestLayout()
+
                 circle4.setImageResource(
                     if (mostVisibleItemPosition == 3) R.drawable.active_circle
                     else R.drawable.inactive_circle
                 )
+                circle4.requestLayout()
+
                 circle5.setImageResource(
                     if (mostVisibleItemPosition == 4) R.drawable.active_circle
                     else R.drawable.inactive_circle
                 )
+                circle5.requestLayout()
             }
         }
-
     }
 
     override fun onDestroyView() {

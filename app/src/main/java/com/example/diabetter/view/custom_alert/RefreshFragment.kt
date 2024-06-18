@@ -1,4 +1,4 @@
-package com.example.diabetter.view.main
+package com.example.diabetter.view.custom_alert
 
 import android.os.Bundle
 import android.view.LayoutInflater
