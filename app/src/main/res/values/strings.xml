@@ -63,4 +63,11 @@
     <string name="callories">calories</string>
     <string name="refresh">Refresh</string>
     <string name="cancel">Cancel</string>
+    <string name="refresh_note_title">Note:</string>
+    <string name="refresh_note">If you choose no filter, all foods from rating 1-5 will be recommended</string>
+    <string name="no_filter">No Filter</string>
+    <string name="rating_1">Rating 1+</string>
+    <string name="rating_2">Rating 2+</string>
+    <string name="rating_3">Rating 3+</string>
+    <string name="rating_4">Rating 4+</string>
 </resources>

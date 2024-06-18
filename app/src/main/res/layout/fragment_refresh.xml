@@ -45,18 +45,20 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_title_refresh"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="4dp">
+
                 <RadioButton
                     android:id="@+id/rb0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
                     android:layout_marginLeft="-4dp"
-                    android:text="No Filter"
+                    android:background="@null"
                     android:checked="true"
-                    app:buttonTint="@color/secondary_600"
                     android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingLeft="4dp"
+                    android:text="@string/no_filter"
+                    android:textColor="@color/secondary_800"
                     android:textSize="@dimen/body_4"
-                    android:textColor="@color/secondary_800"/>
+                    app:buttonTint="@color/secondary_600" />
                 <RadioButton
                     android:id="@+id/rb1"
                     android:layout_width="wrap_content"
@@ -67,8 +69,9 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:textSize="@dimen/body_4"
                     android:textColor="@color/secondary_800"
-                    android:text="Rating 1+"
-                    app:buttonTint="@color/secondary_600"/>
+                    android:text="@string/rating_1"
+                    app:buttonTint="@color/secondary_600"
+                    android:background="@null"/>
                 <RadioButton
                     android:id="@+id/rb2"
                     android:layout_width="wrap_content"
@@ -79,7 +82,8 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:textSize="@dimen/body_4"
                     android:textColor="@color/secondary_800"
-                    android:text="Rating 2+"
+                    android:text="@string/rating_2"
+                    android:background="@null"
                     app:buttonTint="@color/secondary_600"/>
                 <RadioButton
                     android:id="@+id/rb3"
@@ -91,7 +95,8 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:textSize="@dimen/body_4"
                     android:textColor="@color/secondary_800"
-                    android:text="Rating 3+"
+                    android:text="@string/rating_3"
+                    android:background="@null"
                     app:buttonTint="@color/secondary_600"/>
                 <RadioButton
                     android:id="@+id/rb4"
@@ -103,7 +108,8 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:textSize="@dimen/body_4"
                     android:textColor="@color/secondary_800"
-                    android:text="Rating 4+"
+                    android:text="@string/rating_4"
+                    android:background="@null"
                     app:buttonTint="@color/secondary_600"/>
             </RadioGroup>
 
@@ -111,7 +117,7 @@
                 android:id="@+id/tv_note_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Note:"
+                android:text="@string/refresh_note_title"
                 app:layout_constraintTop_toBottomOf="@id/rg_rating"
                 app:layout_constraintStart_toStartOf="parent"
                 android:fontFamily="@font/poppins_semi_bold"
@@ -122,7 +128,7 @@
                 android:id="@+id/tv_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="If you choose no filter, all foods from rating 1-5 will be recommended"
+                android:text="@string/refresh_note"
                 android:maxLines="2"
                 app:layout_constraintTop_toBottomOf="@id/tv_note_title"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 package com.example.diabetter.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diabetter.R
+import com.example.diabetter.view.detail_menu.DetailMenuActivity
 
 class RecommendationMenuAdapter(private val itemCount: Int) :
     RecyclerView.Adapter<RecommendationMenuAdapter.ViewHolder>() {
@@ -32,30 +34,46 @@ class RecommendationMenuAdapter(private val itemCount: Int) :
             else -> {}
         }
         holder.itemView.layoutParams = layoutParams
+        holder.itemView.setOnClickListener {
+            val context = it.context
+            val intent = Intent(context, DetailMenuActivity::class.java)
+            // Pass any necessary data to DetailMenuActivity
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = itemCount
 }
 
-fun setupRecyclerView(recyclerView: RecyclerView, itemCount: Int) {
+fun setupRecyclerView(
+    recyclerView: RecyclerView,
+    itemCount: Int,
+    onMostVisibleItemChanged: (Int) -> Unit
+) {
     val linearLayoutManager =
         LinearLayoutManager(recyclerView.context, LinearLayoutManager.HORIZONTAL, false)
     recyclerView.layoutManager = linearLayoutManager
     recyclerView.adapter = RecommendationMenuAdapter(itemCount)
 
-    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+    val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            findMostVisibleItem(recyclerView, linearLayoutManager)
+            findMostVisibleItem(recyclerView, linearLayoutManager, onMostVisibleItemChanged)
         }
-    })
+    }
+
+    recyclerView.addOnScrollListener(scrollListener)
 
     recyclerView.viewTreeObserver.addOnGlobalLayoutListener {
-        findMostVisibleItem(recyclerView, linearLayoutManager)
+        findMostVisibleItem(recyclerView, linearLayoutManager, onMostVisibleItemChanged)
     }
 }
 
-fun findMostVisibleItem(recyclerView: RecyclerView, layoutManager: LinearLayoutManager) {
+fun findMostVisibleItem(
+    recyclerView: RecyclerView,
+    layoutManager: LinearLayoutManager,
+    onMostVisibleItemChanged: (Int) -> Unit
+) {
     val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
     val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
 
@@ -77,6 +95,7 @@ fun findMostVisibleItem(recyclerView: RecyclerView, layoutManager: LinearLayoutM
     }
 
     if (mostVisibleItemPosition != -1) {
-        Log.d("RecommendationMenuAdapter", "Most visible item position: $mostVisibleItemPosition")
+//        Log.d("RecommendationMenuAdapter", "Most visible item position: $mostVisibleItemPosition")
+        onMostVisibleItemChanged(mostVisibleItemPosition)
     }
 }

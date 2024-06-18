@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Diabetter"
         tools:targetApi="31">
         <activity
+            android:name=".view.detail_food.DetailFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.detail_menu.DetailMenuActivity"
             android:exported="false" />
         <activity
