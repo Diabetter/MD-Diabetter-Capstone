@@ -70,4 +70,10 @@
     <string name="rating_2">Rating 2+</string>
     <string name="rating_3">Rating 3+</string>
     <string name="rating_4">Rating 4+</string>
+    <string name="Profile">Profile</string>
+    <string name="years_old">years old</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="tv_see_history">See what you have eaten before</string>
+    <string name="logout">Logout</string>
+    <string name="diabetter">Diabetter</string>
 </resources>

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentHomeBinding
 import com.example.diabetter.databinding.TodayMenuBinding
-import com.example.diabetter.utils.StatusBar
 import com.example.diabetter.view.detail_menu.DetailMenuActivity
 import com.example.diabetter.adapter.RecommendationMenuAdapter
 import com.example.diabetter.adapter.setupRecyclerView
@@ -48,9 +47,6 @@ class HomeFragment : Fragment() {
         menuTodayMenuBinding = binding.menuToday
         otherFoodBinding = binding.otherFood
 
-        StatusBar.addStatusBarMargin(requireActivity(), binding.tvHello, 32)
-        StatusBar.addStatusBarMargin(requireActivity(), binding.ivSave, 32)
-
         binding.rvRecommendationMenu.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRecommendationMenu.adapter = RecommendationMenuAdapter(5)
@@ -69,8 +65,6 @@ class HomeFragment : Fragment() {
             MenuData(10002.0),
             MenuData(10003.0),
             MenuData(10004.0),
-            MenuData(10005.0),
-            MenuData(10006.0),
         )
 
         val menuViews = listOf(
@@ -78,8 +72,6 @@ class HomeFragment : Fragment() {
             otherFoodBinding.menu2,
             otherFoodBinding.menu3,
             otherFoodBinding.menu4,
-            otherFoodBinding.menu5,
-            otherFoodBinding.menu6
         )
 
         menuViews.forEachIndexed { index, menuView ->
