@@ -19,6 +19,7 @@ import com.example.diabetter.data.MenuData
 import com.example.diabetter.databinding.OtherFoodBinding
 import com.example.diabetter.view.custom_alert.RefreshFragment
 import com.example.diabetter.view.detail_food.DetailFoodActivity
+import com.example.diabetter.view.detail_menu_today.DetailMenuTodayActivity
 
 class HomeFragment : Fragment() {
 
@@ -54,7 +55,7 @@ class HomeFragment : Fragment() {
         menuTodayMenuBinding.apply {
             listOf(tvSeeDetail, tvDetailMenuToday).forEach { tv ->
                 tv.setOnClickListener {
-                    val intent = Intent(requireContext(), DetailMenuActivity::class.java)
+                    val intent = Intent(requireContext(), DetailMenuTodayActivity::class.java)
                     startActivity(intent)
                 }
             }

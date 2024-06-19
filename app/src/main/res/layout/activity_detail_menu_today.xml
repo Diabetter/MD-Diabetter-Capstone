@@ -34,31 +34,18 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/primary_500"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:padding="12dp"
-            android:text="@string/choose_menu"
-            android:textColor="@color/white"
-            android:textSize="@dimen/body_5"
-            app:layout_constraintTop_toBottomOf="@id/detail_menu"/>
+
         <TextView
             android:id="@+id/tv_more_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/food_nutrition_facts"
-            app:layout_constraintTop_toBottomOf="@id/btn_save"
+            app:layout_constraintTop_toBottomOf="@id/detail_menu"
             app:layout_constraintStart_toStartOf="parent"
             android:fontFamily="@font/poppins_semi_bold"
             android:includeFontPadding="false"
             android:textSize="@dimen/body_2"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="@dimen/activity_horizontal_margin"/>
         <androidx.cardview.widget.CardView
             android:id="@+id/iv_menu1_detail"

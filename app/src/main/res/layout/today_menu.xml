@@ -18,7 +18,7 @@
             android:id="@+id/rating_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/secondary_900"
+            android:backgroundTint="@color/secondary_700"
             android:layout_marginTop="-4dp"
             android:layout_marginStart="-4dp"
             card_view:cardElevation="0dp"
@@ -89,7 +89,7 @@
                 card_view:cardCornerRadius="10dp">
 
                 <ImageView
-                    android:id="@+id/iv_today_men"
+                    android:id="@+id/iv_menu1"
                     android:layout_width="68dp"
                     android:layout_height="68dp"
                     android:scaleType="centerCrop"
@@ -103,6 +103,7 @@
                 card_view:cardCornerRadius="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_menu2"
                     android:layout_width="68dp"
                     android:layout_height="68dp"
                     android:scaleType="centerCrop"
@@ -115,6 +116,7 @@
                 card_view:cardCornerRadius="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_menu3"
                     android:layout_width="68dp"
                     android:layout_height="68dp"
                     android:scaleType="centerCrop"

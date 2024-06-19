@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/rating_layout"
+                android:id="@+id/date_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/secondary_700"
@@ -56,7 +56,7 @@
                 android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                card_view:layout_constraintTop_toBottomOf="@id/rating_layout"
+                card_view:layout_constraintTop_toBottomOf="@id/date_layout"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 android:orientation="horizontal"
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     card_view:cardCornerRadius="10dp">
                     <ImageView
-                        android:id="@+id/iv_today_men"
+                        android:id="@+id/iv_menu1"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:src="@drawable/foodpicts_517"
@@ -80,6 +80,7 @@
                     android:layout_marginHorizontal="24dp"
                     card_view:cardCornerRadius="10dp">
                     <ImageView
+                        android:id="@+id/iv_menu2"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:src="@drawable/foodpicts_518"
@@ -90,6 +91,7 @@
                     android:layout_height="wrap_content"
                     card_view:cardCornerRadius="10dp">
                     <ImageView
+                        android:id="@+id/iv_menu3"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:src="@drawable/foodpicts_519"

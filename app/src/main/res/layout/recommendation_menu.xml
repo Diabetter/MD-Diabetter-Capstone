@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
-                    android:id="@+id/iv_today_men"
+                    android:id="@+id/iv_menu1"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/foodpicts_517"
@@ -87,6 +87,7 @@
                 android:layout_marginHorizontal="16dp"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
+                    android:id="@+id/iv_menu2"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/foodpicts_518"
@@ -97,6 +98,7 @@
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
+                    android:id="@+id/iv_menu3"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/foodpicts_519"
