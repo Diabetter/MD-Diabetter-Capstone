@@ -58,5 +58,7 @@
     <string name="fourfive_stars">4.5</string>
     <string name="popular_menus_title">Popular Menus</string>
     <string name="popular_menus_desc">Lets try menu that already help many peoples</string>
+    <string name="recommended_food_title">Recommended Foods</string>
+    <string name="recommendation_food">Gado-Gado</string>
 
 </resources>

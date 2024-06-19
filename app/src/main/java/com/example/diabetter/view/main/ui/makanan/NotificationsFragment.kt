@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.diabetter.R
 import com.example.diabetter.databinding.FragmentNotificationsBinding
+import com.example.diabetter.utils.GridSpacingItemDecoration
+import com.example.diabetter.view.main.ui.makanan.adapter.RecommendedFoodAdapter
 
 class NotificationsFragment : Fragment() {
 
@@ -22,16 +27,22 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel = ViewModelProvider(this)[NotificationsViewModel::class.java]
+        val view = inflater.inflate(R.layout.fragment_notifications, container, false)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_foodRecom)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        val spacingInDp = 10
+        val itemDecoration = GridSpacingItemDecoration(2, dpToPX(spacingInDp))
+        recyclerView.addItemDecoration(itemDecoration)
+        recyclerView.adapter = RecommendedFoodAdapter(10)
+
+        return view
+    }
+
+    private fun dpToPX(dp: Int): Int {
+        val density = resources.displayMetrics.density
+        return Math.round(dp * density)
     }
 
     override fun onDestroyView() {

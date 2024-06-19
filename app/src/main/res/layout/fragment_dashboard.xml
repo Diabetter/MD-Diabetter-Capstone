@@ -7,6 +7,44 @@
     android:background="@color/primary_500"
     tools:context=".view.main.ui.menu.DashboardFragment">
 
+    <TextView
+        android:id="@+id/tv_hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:includeFontPadding="false"
+        android:text="@string/hello_home"
+        android:textColor="@color/white"
+        android:textSize="@dimen/heading_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:fontFamily="@font/poppins_light"
+        android:includeFontPadding="false"
+        android:text="@string/home_username"
+        android:textColor="@color/white"
+        android:textSize="@dimen/heading_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hello" />
+
+    <ImageView
+        android:id="@+id/iv_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:padding="4dp"
+        android:src="@drawable/save_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/bg_menu"
         android:layout_width="match_parent"
@@ -17,50 +55,15 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="-16dp" />
 
-    <ImageView
-        android:id="@+id/iv_save2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/save_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_hello2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="@string/hello_home"
-        android:textColor="@color/white"
-        android:textSize="@dimen/heading_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_username2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:fontFamily="@font/poppins_light"
-        android:text="@string/home_username"
-        android:textColor="@color/white"
-        android:textSize="@dimen/heading_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hello2" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_page"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="-30dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_menu"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username2">
+        app:layout_constraintTop_toBottomOf="@+id/tv_username">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,25 +97,6 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_search"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-20dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:orientation="horizontal"
-            android:queryHint="Search" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
