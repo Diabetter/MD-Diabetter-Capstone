@@ -12,25 +12,71 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rating_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondary_700"
+            android:layout_marginTop="-4dp"
+            android:layout_marginStart="-4dp"
+            card_view:cardElevation="0dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:includeFontPadding="false"
+                    android:text="4.5"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/body_4" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/white"
+                    android:progressTint="@color/rating"
+                    android:rating="4.5"
+                    android:stepSize="0.1" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/rating_layout"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="16dp">
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
-                    android:id="@+id/iv_today_men"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:id="@+id/iv_menu1"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:src="@drawable/foodpicts_517"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
@@ -38,11 +84,12 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
+                android:layout_marginHorizontal="16dp"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:id="@+id/iv_menu2"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:src="@drawable/foodpicts_518"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
@@ -51,8 +98,9 @@
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:id="@+id/iv_menu3"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:src="@drawable/foodpicts_519"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
@@ -64,8 +112,11 @@
             android:layout_height="wrap_content"
             card_view:layout_constraintTop_toBottomOf="@id/menu"
             card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp">
             <TextView
                 android:id="@+id/tv_sugar_level"
                 android:layout_width="wrap_content"
@@ -74,7 +125,7 @@
                 android:textSize="@dimen/body_6"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:textColor="@color/secondary_800"
-                android:layout_marginEnd="4dp"/>
+                android:layout_marginEnd="4dp" />
             <TextView
                 android:id="@+id/tv_sugar"
                 android:layout_width="wrap_content"
@@ -96,7 +147,8 @@
             card_view:layout_constraintBottom_toBottomOf="@id/sugar_level"
             card_view:layout_constraintEnd_toEndOf="parent"
             android:clickable="true"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

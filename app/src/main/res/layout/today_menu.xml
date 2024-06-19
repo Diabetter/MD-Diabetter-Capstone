@@ -6,66 +6,121 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="12dp"
-    android:background="@color/primary_600"
     card_view:cardElevation="4dp"
     card_view:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp">
-        <TextView
-            android:id="@+id/tv_menu_today"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rating_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/your_menu_today"
-            android:textSize="@dimen/body_4"
+            android:backgroundTint="@color/secondary_700"
+            android:layout_marginTop="-4dp"
+            android:layout_marginStart="-4dp"
+            card_view:cardElevation="0dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:includeFontPadding="false"
+                    android:text="4.5"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/body_4" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/white"
+                    android:progressTint="@color/rating"
+                    android:rating="4.5"
+                    android:stepSize="0.1" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_menu_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_semi_bold"
-            android:textColor="@color/secondary_800"/>
+            android:text="@string/your_menu_today"
+            android:textColor="@color/secondary_800"
+            android:textSize="@dimen/body_4"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/rating_layout" />
 
         <LinearLayout
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@id/tv_menu_today"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/tv_menu_today">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
+
                 <ImageView
-                    android:id="@+id/iv_today_men"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/foodpicts_517"
-                    android:scaleType="centerCrop"/>
+                    android:id="@+id/iv_menu1"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/foodpicts_517" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
+                android:layout_marginHorizontal="16dp"
                 card_view:cardCornerRadius="10dp">
+
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/foodpicts_518"
-                    android:scaleType="centerCrop"/>
+                    android:id="@+id/iv_menu2"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/foodpicts_518" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 card_view:cardCornerRadius="10dp">
+
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/foodpicts_519"
-                    android:scaleType="centerCrop"/>
+                    android:id="@+id/iv_menu3"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/foodpicts_519" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
@@ -73,41 +128,55 @@
             android:id="@+id/sugar_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="@id/menu"
-            card_view:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/menu">
+
             <TextView
                 android:id="@+id/tv_sugar_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/callorie_level"
-                android:textSize="@dimen/body_5"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="4dp"
                 android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/callorie_level"
                 android:textColor="@color/secondary_800"
-                android:layout_marginEnd="4dp"/>
+                android:textSize="@dimen/body_5" />
+
             <TextView
                 android:id="@+id/tv_sugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/callorie"
-                android:textSize="@dimen/body_5"
                 android:fontFamily="@font/poppins"
-                android:textColor="@color/secondary_800"/>
+                android:text="@string/callorie"
+                android:textColor="@color/secondary_800"
+                android:textSize="@dimen/body_5" />
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/tv_see_detail"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            card_view:layout_constraintTop_toBottomOf="@id/menu"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/white"
+            />
         <TextView
             android:id="@+id/tv_detail_menu_today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/see_detail"
-            android:textSize="@dimen/body_6"
-            android:fontFamily="@font/poppins_light"
-            android:textColor="@color/secondary_800"
-            card_view:layout_constraintBottom_toBottomOf="@id/sugar_level"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
-            android:layout_marginTop="12dp"/>
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/see_detail"
+            android:textColor="@color/secondary_800"
+            android:textSize="@dimen/body_6"
+            card_view:layout_constraintBottom_toBottomOf="@id/sugar_level"
+            card_view:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

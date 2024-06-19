@@ -111,8 +111,7 @@
         android:text="@string/tv_welcome3"
         android:textColor="@color/black"
         android:textSize="@dimen/body_5"
-        app:layout_constraintEnd_toEndOf="@id/ivWelcome3"
-        app:layout_constraintStart_toStartOf="@id/ivWelcome3"
+        app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivWelcome3" />
 
     <Button
@@ -156,11 +155,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.425" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.575" />
 </androidx.constraintlayout.motion.widget.MotionLayout>

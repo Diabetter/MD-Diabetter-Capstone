@@ -3,10 +3,7 @@ package com.example.diabetter.view.main
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.diabetter.R
 import com.example.diabetter.databinding.ActivityMainBinding
@@ -20,7 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        window.statusBarColor = ContextCompat.getColor(this, R.color.primary_500)
+
+        window.statusBarColor = getColor(R.color.primary_500)
 
         val navView: BottomNavigationView = binding.navView
 

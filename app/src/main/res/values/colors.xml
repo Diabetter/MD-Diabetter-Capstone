@@ -36,4 +36,8 @@
     <color name="error_700">#B32A2A</color>
     <color name="error_900">#781C1C</color>
     <color name="tetriary">#838383</color>
+    <color name="rating">#DFB300</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_shade">#FBFBFB</color>">
+    <color name="light_gray">#D3D3D3</color>
 </resources>
