@@ -13,10 +13,12 @@
         android:theme="@style/Theme.Diabetter"
         tools:targetApi="31">
         <activity
-            android:name=".view.edit_profile.EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.detail_food.DetailFoodActivity"
+            android:exported="false"
+            android:label="@string/title_activity_detail_food"
+            android:theme="@style/Theme.Diabetter.NoActionBar" />
+        <activity
+            android:name=".view.edit_profile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".view.detail_menu.DetailMenuActivity"

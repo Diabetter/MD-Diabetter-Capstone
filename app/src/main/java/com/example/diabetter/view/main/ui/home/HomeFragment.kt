@@ -17,8 +17,8 @@ import com.example.diabetter.adapter.RecommendationMenuAdapter
 import com.example.diabetter.adapter.setupRecyclerView
 import com.example.diabetter.data.MenuData
 import com.example.diabetter.databinding.OtherFoodBinding
-import com.example.diabetter.view.detail_food.DetailFoodActivity
 import com.example.diabetter.view.custom_alert.RefreshFragment
+import com.example.diabetter.view.detail_food.DetailFoodActivity
 
 class HomeFragment : Fragment() {
 
