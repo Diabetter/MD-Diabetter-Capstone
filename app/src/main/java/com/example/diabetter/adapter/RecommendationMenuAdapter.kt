@@ -7,23 +7,48 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.diabetter.R
+import com.example.diabetter.data.remote.response.MakananResponse
+import com.example.diabetter.data.remote.response.PredictResponse
+import com.example.diabetter.databinding.RecommendationMenuBinding
 import com.example.diabetter.view.detail_menu.DetailMenuActivity
 
-class RecommendationMenuAdapter(private val itemCount: Int) :
+class RecommendationMenuAdapter(private val items: List<PredictResponse>, private val makananResponses: List<MakananResponse>) :
     RecyclerView.Adapter<RecommendationMenuAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Tambahkan referensi ke view di layout recommendation_menu.xml
+    class ViewHolder(private val binding: RecommendationMenuBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(predictResponse: PredictResponse, makananResponses: List<MakananResponse>) {
+            val result = predictResponse.data
+            binding.tvRating.text = result.rating.toString()
+            binding.tvSugarLevel.text = result.kalori.toString()
+            binding.rating.rating = result.rating.toFloat()
+
+            val food1 = makananResponses.find { it.data.nama == result.food1 }
+            val food2 = makananResponses.find { it.data.nama == result.food2 }
+            val food3 = makananResponses.find { it.data.nama == result.food3 }
+
+            food1?.let {
+                Glide.with(binding.ivMenu1.context).load(it.url).into(binding.ivMenu1)
+            }
+            food2?.let {
+                Glide.with(binding.ivMenu2.context).load(it.url).into(binding.ivMenu2)
+            }
+            food3?.let {
+                Glide.with(binding.ivMenu3.context).load(it.url).into(binding.ivMenu3)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recommendation_menu, parent, false)
-        return ViewHolder(view)
+        val binding = RecommendationMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
         val layoutParams = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
         val marginFirst = holder.itemView.resources.getDimensionPixelSize(R.dimen.margin_first_item)
         val marginLast = holder.itemView.resources.getDimensionPixelSize(R.dimen.margin_last_item)
@@ -34,26 +59,33 @@ class RecommendationMenuAdapter(private val itemCount: Int) :
             else -> {}
         }
         holder.itemView.layoutParams = layoutParams
+
+
+        holder.bind(items[position], makananResponses)
+
         holder.itemView.setOnClickListener {
             val context = it.context
             val intent = Intent(context, DetailMenuActivity::class.java)
-            // Pass any necessary data to DetailMenuActivity
+
+            intent.putExtra("menu_item", item)
+            intent.putParcelableArrayListExtra("makanan_responses", ArrayList(makananResponses))
             context.startActivity(intent)
         }
     }
 
-    override fun getItemCount() = itemCount
+    override fun getItemCount() = items.size
 }
 
 fun setupRecyclerView(
     recyclerView: RecyclerView,
-    itemCount: Int,
+    predictResponses: List<PredictResponse>,
+    makananResponses: List<MakananResponse>,
     onMostVisibleItemChanged: (Int) -> Unit
 ) {
     val linearLayoutManager =
         LinearLayoutManager(recyclerView.context, LinearLayoutManager.HORIZONTAL, false)
     recyclerView.layoutManager = linearLayoutManager
-    recyclerView.adapter = RecommendationMenuAdapter(itemCount)
+    recyclerView.adapter = RecommendationMenuAdapter(predictResponses, makananResponses)
 
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

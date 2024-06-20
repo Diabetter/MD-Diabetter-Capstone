@@ -17,6 +17,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://diabeter-backend-nokytgc4cq-et.a.run.app/\"")
     }
 
     buildTypes {
@@ -63,4 +65,9 @@ dependencies {
 
     //glide
     implementation (libs.glide)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 }

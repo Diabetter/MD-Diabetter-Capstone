@@ -17,7 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.start.setOnClickListener {
-            startActivity(Intent(this, PersonalizationActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
         binding.haveAccount.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
