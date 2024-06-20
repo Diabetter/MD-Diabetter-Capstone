@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.diabetter.R
 import com.example.diabetter.data.preference.LoginPreferences
+import com.example.diabetter.view.launcher.LauncherActivity
 import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.welcome.WelcomeActivity
 
@@ -20,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val splashIntent = Intent(this@SplashActivity, WelcomeActivity::class.java)
+            val splashIntent = Intent(this@SplashActivity, LauncherActivity::class.java)
             startActivity(splashIntent)
             finish()
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)}, SPLASH_DURATION)

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.signin.SignInActivity
+import com.example.diabetter.view.welcome.WelcomeActivity
 
 class LauncherActivity : AppCompatActivity() {
     private lateinit var loginPreferences: LoginPreferences
@@ -16,7 +17,7 @@ class LauncherActivity : AppCompatActivity() {
         if (loginPreferences.isUserLoggedIn()) {
             startActivity(Intent(this, MainActivity::class.java))
         } else {
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, WelcomeActivity::class.java))
         }
     }
 }

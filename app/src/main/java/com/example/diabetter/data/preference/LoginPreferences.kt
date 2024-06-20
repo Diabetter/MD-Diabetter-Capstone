@@ -19,12 +19,28 @@ class LoginPreferences(context: Context) {
         return sharedPreferences.getString("uid", null)
     }
 
+    fun deleteUid() {
+        sharedPreferences.edit().remove("uid").apply()
+    }
+
+    fun storeEmail(email: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("email", email)
+        editor.apply()
+    }
+
+    fun retrieveEmail(): String? {
+        return sharedPreferences.getString("email", null)
+    }
+
+    fun deleteEmail() {
+        val editor = sharedPreferences.edit()
+        editor.remove("email")
+        editor.apply()
+    }
+
     fun isUserLoggedIn(): Boolean {
         val uid = retrieveUid()
         return uid != null
-    }
-
-    fun deleteUid() {
-        sharedPreferences.edit().remove("uid").commit()
     }
 }
