@@ -22,4 +22,8 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
         }
     }
+
+    private fun RegisterUser() {
+
+    }
 }

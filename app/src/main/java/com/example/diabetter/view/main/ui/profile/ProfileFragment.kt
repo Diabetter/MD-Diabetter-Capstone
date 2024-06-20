@@ -6,14 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.databinding.FragmentProfileBinding
 import com.example.diabetter.view.edit_profile.EditProfileActivity
+import com.example.diabetter.view.signin.SignInActivity
 
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
+    private var loginPreferences: LoginPreferences? = null
 
     private val binding get() = _binding!!
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,6 +40,16 @@ class ProfileFragment : Fragment() {
         binding.btnEdit.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
+
+        binding.btnLogout.setOnClickListener {
+            logout()
+        }
+    }
+
+
+    private fun logout() {
+        loginPreferences?.deleteUid()
+        startActivity(Intent(requireContext(), SignInActivity::class.java))
     }
 
     override fun onDestroyView() {

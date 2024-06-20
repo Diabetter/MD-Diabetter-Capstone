@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.diabetter.R
+import com.example.diabetter.data.preference.LoginPreferences
+import com.example.diabetter.view.main.MainActivity
 import com.example.diabetter.view.welcome.WelcomeActivity
 
 
@@ -16,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
         enableEdgeToEdge()
         window.navigationBarColor = ContextCompat.getColor(this, R.color.primary_500)
         setContentView(R.layout.activity_splash)
+
         Handler().postDelayed({
             val splashIntent = Intent(this@SplashActivity, WelcomeActivity::class.java)
             startActivity(splashIntent)

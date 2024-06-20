@@ -14,13 +14,13 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.diabetter.view.main.ui.menu.MenuFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_menu"
         tools:layout="@layout/fragment_menu" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.diabetter.view.main.ui.makanan.FoodFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_makanan"
         tools:layout="@layout/fragment_food" />
 
     <fragment

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.secret.gradle)
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
@@ -19,15 +20,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -38,6 +30,16 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
 }
 
@@ -62,5 +64,9 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     //glide
-    implementation (libs.glide)
+    implementation(libs.glide)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
