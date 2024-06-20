@@ -10,7 +10,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "personalization_preference")
 class PersonalizationPreference private constructor(private val dataStore: DataStore<Preferences>){
     private val gender = stringPreferencesKey("genderPersonalization")
 

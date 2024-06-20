@@ -15,6 +15,7 @@ import com.example.diabetter.data.api.user.profile.UserProfileResponse
 import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.databinding.FragmentProfileBinding
 import com.example.diabetter.view.edit_profile.EditProfileActivity
+import com.example.diabetter.view.history.HistoryActivity
 import com.example.diabetter.view.signin.SignInActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,6 +53,10 @@ class ProfileFragment : Fragment() {
         getProfiles()
         binding.btnEdit.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+
+        binding.seeMore.setOnClickListener {
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
         }
 
         binding.btnLogout.setOnClickListener {
@@ -104,5 +109,4 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

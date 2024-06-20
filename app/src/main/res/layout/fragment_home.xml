@@ -99,6 +99,7 @@
                     android:textColor="@color/secondary_800"
                     android:textSize="@dimen/body_4"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -176,12 +177,23 @@
                     android:id="@+id/rv_recommendation_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:minHeight="156dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="horizontal"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_refresh4" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_refresh4"
+                    app:layout_constraintBottom_toBottomOf="@id/layout_step_indicator"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/layout_step_indicator"
@@ -224,44 +236,6 @@
                         android:layout_marginTop="4dp"
                         android:src="@drawable/inactive_circle" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_discover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:text="@string/discover_other_foods"
-                    android:textColor="@color/secondary_800"
-                    android:textSize="@dimen/body_4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_step_indicator" />
-
-                <TextView
-                    android:id="@+id/tv_see_other_foods"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="24dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="@string/see_more"
-                    android:textColor="@color/secondary_600"
-                    android:textSize="@dimen/body_5"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_discover"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_discover" />
-
-                <include
-                    android:id="@+id/other_food"
-                    layout="@layout/other_food"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_discover" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>

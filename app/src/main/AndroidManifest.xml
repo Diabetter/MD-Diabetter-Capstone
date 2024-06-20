@@ -20,6 +20,9 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".view.history.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.detail_menu_today.DetailMenuTodayActivity"
             android:exported="false" />
         <activity

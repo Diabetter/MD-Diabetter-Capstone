@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,12 @@ import com.example.diabetter.view.detail_menu.DetailMenuActivity
 import com.example.diabetter.adapter.RecommendationMenuAdapter
 import com.example.diabetter.adapter.setupRecyclerView
 import com.example.diabetter.data.MenuData
+import com.example.diabetter.data.Result
+import com.example.diabetter.data.remote.request.GetMakananRequest
+import com.example.diabetter.data.remote.response.MakananResponse
+import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.databinding.OtherFoodBinding
+import com.example.diabetter.utils.ObtainViewModelFactory
 import com.example.diabetter.view.custom_alert.RefreshFragment
 import com.example.diabetter.view.detail_food.DetailFoodActivity
 import com.example.diabetter.view.detail_menu_today.DetailMenuTodayActivity
@@ -25,11 +31,67 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var menuTodayMenuBinding: TodayMenuBinding
-    private lateinit var otherFoodBinding : OtherFoodBinding
+
+    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
+    private var predictResponses: List<PredictResponse> = emptyList()
+    private var makananResponses: List<MakananResponse> = emptyList()
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val viewModel = ObtainViewModelFactory.obtainViewModelFactory<HomeViewModel>(requireContext())
+
+        viewModel.predict(staticUID, 1).observe(requireActivity()){result ->
+            if(result != null){
+                when(result){
+                    is Result.Loading -> {
+                        binding.progress.visibility = View.VISIBLE
+                    }
+                    is Result.Error -> {
+                        binding.progress.visibility = View.VISIBLE
+                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                    }
+                    is Result.Success -> {
+                        val data = result.data
+                        Log.d("Testt", data.toString())
+                        predictResponses = data
+
+                        val foodNames = predictResponses.flatMap {
+                            listOf(it.data.food1, it.data.food2, it.data.food3)
+                        }
+
+                        foodNames.forEach { foodName ->
+                            val getMakananRequest = GetMakananRequest(foodName)
+                            viewModel.getMakanan(getMakananRequest).observe(this) { result ->
+                                when (result) {
+                                    is Result.Loading -> {
+                                        binding.progress.visibility = View.VISIBLE
+                                    }
+                                    is Result.Error -> {
+                                        Log.e("HomeFragment", "Error: ${result.error}")
+                                    }
+                                    is Result.Success -> {
+                                        val makananResponse = result.data
+                                        makananResponses = makananResponses + makananResponse
+                                        if (makananResponses.size == foodNames.size) {
+                                            setupRecyclerView()
+                                        }
+                                        binding.progress.visibility = View.GONE
+//                                        Log.d("Testt", makananResponses.toString())
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,11 +108,6 @@ class HomeFragment : Fragment() {
         val binding = binding
 
         menuTodayMenuBinding = binding.menuToday
-        otherFoodBinding = binding.otherFood
-
-        binding.rvRecommendationMenu.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvRecommendationMenu.adapter = RecommendationMenuAdapter(5)
 
         menuTodayMenuBinding.apply {
             listOf(tvSeeDetail, tvDetailMenuToday).forEach { tv ->
@@ -61,35 +118,26 @@ class HomeFragment : Fragment() {
             }
         }
 
-        val menuDataList = listOf(
-            MenuData(10001.0),
-            MenuData(10002.0),
-            MenuData(10003.0),
-            MenuData(10004.0),
-        )
-
-        val menuViews = listOf(
-            otherFoodBinding.menu1,
-            otherFoodBinding.menu2,
-            otherFoodBinding.menu3,
-            otherFoodBinding.menu4,
-        )
-
-        menuViews.forEachIndexed { index, menuView ->
-            menuView.setOnClickListener {
-                val intent = Intent(requireContext(), DetailFoodActivity::class.java).apply {
-                    putExtra("menu_data", menuDataList[index])
-                }
-                startActivity(intent)
-            }
-        }
-
         binding.tvRefresh2.setOnClickListener {
             val showPopUpRefresh = RefreshFragment()
             showPopUpRefresh.show((activity as AppCompatActivity).supportFragmentManager, "RefreshFragment")
         }
 
-        setupRecyclerView(binding.rvRecommendationMenu, MENU_RECOMMENDATION_COUNT) { mostVisibleItemPosition ->
+        if (predictResponses.isNotEmpty()) {
+            setupRecyclerView()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        Log.d("Testt", "Destroy")
+    }
+
+    private fun setupRecyclerView() {
+        val binding = _binding ?: return
+
+        setupRecyclerView(binding.rvRecommendationMenu, predictResponses, makananResponses) { mostVisibleItemPosition ->
             binding.apply {
                 circle1.setImageResource(
                     if (mostVisibleItemPosition == 0) R.drawable.active_circle
@@ -122,15 +170,5 @@ class HomeFragment : Fragment() {
                 circle5.requestLayout()
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        Log.d("Testt", "Destroy")
-    }
-
-    companion object {
-        private const val MENU_RECOMMENDATION_COUNT = 5
     }
 }

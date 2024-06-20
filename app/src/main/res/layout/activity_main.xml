@@ -15,6 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="0dp"
+        app:itemRippleColor="@color/white"
+        app:itemActiveIndicatorStyle="@style/Widget.Design.BottomNavigationView"
         app:menu="@menu/bottom_nav_menu" />
 
     <fragment

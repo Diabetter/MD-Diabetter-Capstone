@@ -232,6 +232,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_daily"/>
 
+                <TextView
+                    android:id="@+id/see_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_more"
+                    android:fontFamily="@font/poppins"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/secondary_700"
+                    android:textSize="@dimen/body_5"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_daily"/>
+
                 <include
                     android:id="@+id/menu_history"
                     layout="@layout/history_menu"

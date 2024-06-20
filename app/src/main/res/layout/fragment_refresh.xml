@@ -7,6 +7,14 @@
     android:layout_gravity="center"
     android:background="@color/transparent">
 
+    <ProgressBar
+        android:id="@+id/progress_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:translationZ="10dp"
+        android:visibility="gone"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/dialog_card"
         android:layout_width="match_parent"
