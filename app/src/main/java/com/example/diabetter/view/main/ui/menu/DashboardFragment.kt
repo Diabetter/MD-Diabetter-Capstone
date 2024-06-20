@@ -46,17 +46,13 @@ class DashboardFragment : Fragment() {
                     val allHistoryResponse = result.data
                     allHistoryResponse?.let {
                         popularMenuAdapter.setData(it.docs)
-                        // Get unique food names to fetch MakananResponse
                         val foodNames = it.docs.flatMap { listOf(it.food1, it.food2, it.food3) }.distinct()
                         fetchMakananResponses(foodNames)
                     }
                 }
                 is Result.Error -> {
-                    // Handle error state when fetching all history
-                    // For example: showToast("Error fetching all history: ${result.error}")
                 }
                 is Result.Loading -> {
-                    // Show loading indicator if needed
                 }
             }
         })
