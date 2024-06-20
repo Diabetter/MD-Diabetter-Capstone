@@ -24,8 +24,9 @@ class MenuFragment : Fragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
-    private lateinit var dashboardViewModel: MenuViewModel
+    private val binding get() = _binding
+    private lateinit var menuViewModel: MenuViewModel
+    private lateinit var popularMenuAdapter: PopularMenuAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,15 +34,19 @@ class MenuFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
 
-        dashboardViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())
+        menuViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())
 
-        val recyclerView = binding.rvPopmenu
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val recyclerView = binding?.rvPopmenu
+        if (recyclerView != null) {
+            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
         popularMenuAdapter = PopularMenuAdapter(emptyList())
-        recyclerView.adapter = popularMenuAdapter
+        if (recyclerView != null) {
+            recyclerView.adapter = popularMenuAdapter
+        }
 
         // Observing all history
-        dashboardViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->
+        menuViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Success -> {
                     val allHistoryResponse = result.data
@@ -64,7 +69,7 @@ class MenuFragment : Fragment() {
     private fun fetchMakananResponses(foodNames: List<String>) {
         foodNames.forEach { foodName ->
             val getMakananRequest = GetMakananRequest(foodName)
-            dashboardViewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner, Observer { result ->
+            menuViewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner, Observer { result ->
                 when (result) {
                     is Result.Success -> {
                         val makananResponse = result.data
