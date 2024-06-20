@@ -1,5 +1,6 @@
 package com.example.diabetter.view.detail_menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -9,17 +10,26 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.diabetter.R
+import com.example.diabetter.data.Result
+import com.example.diabetter.data.remote.request.StoreMenuRequest
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.databinding.ActivityDetailFoodBinding
 import com.example.diabetter.databinding.ActivityDetailMenuBinding
 import com.example.diabetter.databinding.DetailMenuBinding
 import com.example.diabetter.databinding.ToolbarPersonalizationBinding
+import com.example.diabetter.utils.ObtainViewModelFactory
+import com.example.diabetter.view.main.MainActivity
 
 class DetailMenuActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailMenuBinding
     private lateinit var toolbarBinding : ToolbarPersonalizationBinding
     private lateinit var menuBinding : DetailMenuBinding
+    private lateinit var viewModel : DetailMenuViewModel
+
+    private lateinit var storeMenuRequest: StoreMenuRequest
+
+    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMenuBinding.inflate(layoutInflater)
@@ -27,6 +37,7 @@ class DetailMenuActivity : AppCompatActivity() {
 
         toolbarBinding = ToolbarPersonalizationBinding.bind(binding.toolbar)
         menuBinding = DetailMenuBinding.bind(binding.detailMenu)
+        viewModel = ObtainViewModelFactory.obtainViewModelFactory<DetailMenuViewModel>(this)
 
         toolbarBinding.backBtn.setOnClickListener { onBackPressed() }
         toolbarBinding.tvTitle.text = "Menu"
@@ -35,6 +46,29 @@ class DetailMenuActivity : AppCompatActivity() {
         val makananResponses: ArrayList<MakananResponse>? = intent.getParcelableArrayListExtra("makanan_responses")
         if (predictResponse != null && makananResponses != null) {
             bindData(predictResponse, makananResponses)
+        }
+
+        binding.btnSave.setOnClickListener {
+            if (predictResponse != null) {
+                storeMenuRequest = StoreMenuRequest(staticUID, predictResponse.data)
+                Log.d("DetailMenuActivity", "StoreMenuRequest: $storeMenuRequest")
+                viewModel.storeMenu(storeMenuRequest).observe(this) {result ->
+                    if(result != null){
+                        when(result){
+                            is Result.Loading -> {
+                                Log.d("DetailMenuActivity", "Loading")
+                            }
+                            is Result.Error -> {
+                                Log.d("DetailMenuActivity", "Error: ${result.error}")
+                            }
+                            is Result.Success -> {
+                                startActivity(Intent(this, MainActivity::class.java))
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 

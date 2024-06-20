@@ -7,8 +7,10 @@ import com.example.diabetter.data.Result
 import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
+import com.example.diabetter.data.remote.request.StoreMenuRequest
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
+import com.example.diabetter.data.remote.response.StoreMenuResponse
 import com.example.diabetter.data.remote.retrofit.ApiService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -45,10 +47,26 @@ class MenuRepository(
     fun getMakanan(
         namaMakanan : GetMakananRequest
     ) : LiveData<Result<MakananResponse>> = liveData{
+        emit(Result.Loading)
         try{
             val response = apiService.getMakanan(namaMakanan)
             emit(Result.Success(response))
         } catch (e: HttpException) {
+            emit(Result.Error(e.message.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+
+    }
+
+    fun storeMenu(
+        menu : StoreMenuRequest
+    ) : LiveData<Result<StoreMenuResponse>> = liveData{
+        emit(Result.Loading)
+        try {
+            val response = apiService.storePredict(menu)
+            emit(Result.Success(response))
+        }catch (e: HttpException) {
             emit(Result.Error(e.message.toString()))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
