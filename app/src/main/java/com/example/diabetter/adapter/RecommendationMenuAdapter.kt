@@ -13,6 +13,8 @@ import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.databinding.RecommendationMenuBinding
 import com.example.diabetter.view.detail_menu.DetailMenuActivity
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class RecommendationMenuAdapter(private val items: List<PredictResponse>, private val makananResponses: List<MakananResponse>) :
     RecyclerView.Adapter<RecommendationMenuAdapter.ViewHolder>() {
@@ -22,7 +24,7 @@ class RecommendationMenuAdapter(private val items: List<PredictResponse>, privat
 
         fun bind(predictResponse: PredictResponse, makananResponses: List<MakananResponse>) {
             val result = predictResponse.data
-            binding.tvRating.text = result.rating.toString()
+            binding.tvRating.text = BigDecimal(result.rating).setScale(2, RoundingMode.HALF_UP).toString()
             binding.tvSugarLevel.text = result.kalori.toString()
             binding.rating.rating = result.rating.toFloat()
 

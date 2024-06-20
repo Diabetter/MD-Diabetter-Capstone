@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://diabeter-backend-nokytgc4cq-et.a.run.app/\"")
+        buildConfigField("String", "BASE_URL", "\"https://diabeter-backend-nokytgc4cq-et.a.run.app/api/\"")
     }
 
     buildTypes {

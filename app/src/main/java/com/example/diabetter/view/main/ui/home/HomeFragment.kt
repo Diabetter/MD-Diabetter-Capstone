@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var menuTodayMenuBinding: TodayMenuBinding
-    private lateinit var otherFoodBinding : OtherFoodBinding
 
     val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
     private var predictResponses: List<PredictResponse> = emptyList()
@@ -109,7 +108,6 @@ class HomeFragment : Fragment() {
         val binding = binding
 
         menuTodayMenuBinding = binding.menuToday
-        otherFoodBinding = binding.otherFood
 
         menuTodayMenuBinding.apply {
             listOf(tvSeeDetail, tvDetailMenuToday).forEach { tv ->
@@ -117,29 +115,6 @@ class HomeFragment : Fragment() {
                     val intent = Intent(requireContext(), DetailMenuTodayActivity::class.java)
                     startActivity(intent)
                 }
-            }
-        }
-
-        val menuDataList = listOf(
-            MenuData(10001.0),
-            MenuData(10002.0),
-            MenuData(10003.0),
-            MenuData(10004.0),
-        )
-
-        val menuViews = listOf(
-            otherFoodBinding.menu1,
-            otherFoodBinding.menu2,
-            otherFoodBinding.menu3,
-            otherFoodBinding.menu4,
-        )
-
-        menuViews.forEachIndexed { index, menuView ->
-            menuView.setOnClickListener {
-                val intent = Intent(requireContext(), DetailFoodActivity::class.java).apply {
-                    putExtra("menu_data", menuDataList[index])
-                }
-                startActivity(intent)
             }
         }
 

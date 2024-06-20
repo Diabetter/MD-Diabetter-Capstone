@@ -8,6 +8,8 @@ import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
 import com.example.diabetter.data.remote.request.StoreMenuRequest
+import com.example.diabetter.data.remote.request.UserHistoryRequest
+import com.example.diabetter.data.remote.response.HistoryResponse
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.data.remote.response.StoreMenuResponse
@@ -72,6 +74,20 @@ class MenuRepository(
             emit(Result.Error(e.message.toString()))
         }
 
+    }
+
+    fun getHistory(
+        uid : UserHistoryRequest
+    ) : LiveData<Result<HistoryResponse>> = liveData{
+        emit(Result.Loading)
+        try {
+            val response = apiService.getHistory(uid)
+            emit(Result.Success(response))
+        }catch (e: HttpException) {
+            emit(Result.Error(e.message.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
     }
     companion object {
         @Volatile

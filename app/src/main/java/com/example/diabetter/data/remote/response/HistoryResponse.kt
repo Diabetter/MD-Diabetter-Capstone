@@ -2,16 +2,15 @@ package com.example.diabetter.data.remote.response
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
 @Parcelize
-data class PredictResponse(
-	val data: @RawValue Data,
+data class HistoryResponse(
+	val filteredDocs: List<FilteredDocsItem>,
 	val status: String
 ) : Parcelable
 
 @Parcelize
-data class Data(
+data class FilteredDocsItem(
 	val date: String,
 	val kalori: Double,
 	val uid: String,

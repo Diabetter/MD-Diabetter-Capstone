@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.diabetter.databinding.FragmentProfileBinding
 import com.example.diabetter.view.edit_profile.EditProfileActivity
+import com.example.diabetter.view.history.HistoryActivity
 
 
 class ProfileFragment : Fragment() {
@@ -34,6 +35,9 @@ class ProfileFragment : Fragment() {
 
         binding.btnEdit.setOnClickListener {
             startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+        }
+        binding.seeMore.setOnClickListener {
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
         }
     }
 
