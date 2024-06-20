@@ -22,7 +22,6 @@ import retrofit2.HttpException
 
 class MenuRepository(
     private var apiService : ApiService,
-    private var loginPreference: LoginPreferences
 ) {
     fun predict(
         uid: String,
@@ -108,13 +107,11 @@ class MenuRepository(
 
         fun getInstance(
             apiService: ApiService,
-            preferences: LoginPreferences,
 
             ): MenuRepository =
             instance ?: synchronized(this) {
                 instance ?: MenuRepository(
-                    apiService,
-                    preferences,
+                    apiService
                 ).also {
                     instance = it
                 }

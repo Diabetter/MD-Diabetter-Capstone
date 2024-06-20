@@ -9,8 +9,7 @@ import kotlinx.coroutines.runBlocking
 
 object Injection {
     fun provideRepository(context: Context): MenuRepository {
-        val pref = LoginPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiSevice()
-        return MenuRepository.getInstance(apiService, pref)
+        return MenuRepository.getInstance(apiService)
     }
 }
