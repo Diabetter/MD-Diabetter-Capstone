@@ -85,7 +85,7 @@
                 android:id="@+id/tv_popmenu_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="24dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/popular_menus_desc"
                 android:textColor="@color/secondary_800"

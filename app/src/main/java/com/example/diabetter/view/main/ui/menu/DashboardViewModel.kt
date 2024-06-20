@@ -3,11 +3,20 @@ package com.example.diabetter.view.main.ui.menu
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.diabetter.data.Result
+import com.example.diabetter.data.remote.request.GetMakananRequest
+import com.example.diabetter.data.remote.response.AllHistoryResponse
+import com.example.diabetter.data.remote.response.MakananResponse
+import com.example.diabetter.data.repository.MenuRepository
 
-class DashboardViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+class DashboardViewModel(private val menuRepository: MenuRepository) : ViewModel() {
+    fun getAllHistory() : LiveData<Result<AllHistoryResponse>> {
+        return menuRepository.getAllHistory()
     }
-    val text: LiveData<String> = _text
+
+    fun getMakanan(
+        namaMakanan : GetMakananRequest
+    ) : LiveData<Result<MakananResponse>>{
+        return menuRepository.getMakanan(namaMakanan)
+    }
 }

@@ -9,6 +9,7 @@ import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
 import com.example.diabetter.data.remote.request.StoreMenuRequest
 import com.example.diabetter.data.remote.request.UserHistoryRequest
+import com.example.diabetter.data.remote.response.AllHistoryResponse
 import com.example.diabetter.data.remote.response.HistoryResponse
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
@@ -82,6 +83,18 @@ class MenuRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getHistory(uid)
+            emit(Result.Success(response))
+        }catch (e: HttpException) {
+            emit(Result.Error(e.message.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getAllHistory() : LiveData<Result<AllHistoryResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getAllHistory()
             emit(Result.Success(response))
         }catch (e: HttpException) {
             emit(Result.Error(e.message.toString()))

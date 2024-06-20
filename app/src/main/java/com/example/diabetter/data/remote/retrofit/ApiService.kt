@@ -4,6 +4,7 @@ import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
 import com.example.diabetter.data.remote.request.StoreMenuRequest
 import com.example.diabetter.data.remote.request.UserHistoryRequest
+import com.example.diabetter.data.remote.response.AllHistoryResponse
 import com.example.diabetter.data.remote.response.HistoryResponse
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
@@ -34,5 +35,8 @@ interface ApiService {
     suspend fun getHistory(
         @Body body: UserHistoryRequest
     ): HistoryResponse
+
+    @POST("all-history")
+    suspend fun getAllHistory(): AllHistoryResponse
 
 }
