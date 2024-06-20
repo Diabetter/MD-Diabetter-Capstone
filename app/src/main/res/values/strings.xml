@@ -97,4 +97,7 @@
     <string name="choose_menu">Choose this menu for today</string>
     <string name="food_nutrition_facts">Foods nutrition facts</string>
     <string name="history">History</string>
+    <string name="profile_menu">Profile</string>
+    <string name="menu_nav">Menu</string>
+    <string name="makanan_nav">Makanan</string>
 </resources>
