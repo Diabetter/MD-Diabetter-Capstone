@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_500"
-    tools:context=".view.main.ui.menu.DashboardFragment">
+    tools:context=".view.main.ui.makanan.FoodFragment">
+
+    <ImageView
+        android:id="@+id/bg_food"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/big_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_hello"
@@ -45,25 +53,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bg_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/big_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-16dp" />
-
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_page"
+        android:id="@+id/cv_food"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="-30dp"
         app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bg_menu"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,30 +71,40 @@
             android:padding="20dp">
 
             <TextView
-                android:id="@+id/tv_popmenu_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/popular_menus_title"
-                android:textColor="@color/secondary_800"
-                android:textSize="@dimen/body_1" />
-
-            <TextView
-                android:id="@+id/tv_popmenu_desc"
+                android:id="@+id/tv_foodRecom_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="35dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/popular_menus_desc"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/recommended_food_title"
                 android:textColor="@color/secondary_800"
-                android:textSize="@dimen/body_3" />
+                android:textSize="@dimen/body_1" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_popmenu"
+                android:id="@+id/rv_foodRecom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </LinearLayout>
 
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_search"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:orientation="horizontal"
+            android:queryHint="Search" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
