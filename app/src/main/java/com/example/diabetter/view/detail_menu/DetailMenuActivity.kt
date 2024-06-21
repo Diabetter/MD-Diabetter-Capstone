@@ -50,9 +50,9 @@ class DetailMenuActivity : AppCompatActivity() {
         val filteredDocsItem: FilteredDocsItem? = intent.getParcelableExtra("menu_history")
         val makananResponses: ArrayList<MakananResponse>? = intent.getParcelableArrayListExtra("makanan_responses")
         if (filteredDocsItem != null && makananResponses != null) {
+            binding.btnSave.visibility = View.GONE
             bindHistoryData(filteredDocsItem, makananResponses)
         }else {
-            binding.btnSave.visibility = View.GONE
             val predictResponse: PredictResponse? = intent.getParcelableExtra("menu_item")
             if (predictResponse != null && makananResponses != null) {
                 bindData(predictResponse, makananResponses)
@@ -73,6 +73,7 @@ class DetailMenuActivity : AppCompatActivity() {
                                 Log.d("DetailMenuActivity", "Error: ${result.error}")
                             }
                             is Result.Success -> {
+                                finish()
                                 startActivity(Intent(this, MainActivity::class.java))
                             }
                         }

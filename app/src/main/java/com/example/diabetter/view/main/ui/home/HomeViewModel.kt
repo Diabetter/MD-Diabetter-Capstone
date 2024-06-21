@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.diabetter.data.Result
 import com.example.diabetter.data.remote.request.GetMakananRequest
+import com.example.diabetter.data.remote.request.MenuTodayRequest
 import com.example.diabetter.data.remote.response.MakananResponse
+import com.example.diabetter.data.remote.response.MenuTodayResponse
 import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.data.repository.MenuRepository
 

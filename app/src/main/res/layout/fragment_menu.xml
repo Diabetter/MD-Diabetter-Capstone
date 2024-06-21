@@ -28,7 +28,7 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:fontFamily="@font/poppins_light"
         android:includeFontPadding="false"
-        android:text="@string/home_username"
+        android:text="usernam1"
         android:textColor="@color/white"
         android:textSize="@dimen/heading_5"
         app:layout_constraintStart_toStartOf="parent"

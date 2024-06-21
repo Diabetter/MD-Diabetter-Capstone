@@ -62,6 +62,10 @@ class ProfileFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             logout()
         }
+
+        binding.menuHistory.layoutMain.setOnClickListener {
+            startActivity(Intent(requireContext(), HistoryActivity::class.java))
+        }
     }
 
     private fun getProfiles() {
@@ -78,7 +82,7 @@ class ProfileFragment : Fragment() {
                         val userProfileResponse = p1.body()!!
                         binding.tvUsername.text = userProfileResponse.username
                         binding.tvGender.text = userProfileResponse.gender
-                        binding.tvAge.text = userProfileResponse.age.toString()
+                        binding.tvAge.text = ", " + userProfileResponse.age.toString()
                         binding.tvAgeProfile.text = userProfileResponse.age.toString()
                         binding.tvWeight.text = userProfileResponse.weight.toString()
                         binding.tvHeight.text = userProfileResponse.height.toString()
