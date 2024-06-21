@@ -20,3 +20,6 @@
 Our Application Interface can be accessed through this link:
 - HiFi and Protoype Figma: bit.ly/4bcwPS6
 - Implemented Design : bit.ly/3VzdIf1
+
+## Download our APK
+Download APK - bit.ly/3VxDPDc
