@@ -1,4 +1,4 @@
-package com.example.diabetter.data.remote.retrofit
+package com.example.diabetter.data.api
 
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
@@ -15,7 +15,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface ApiService {
+interface FoodApi {
     @POST("temp-predict")
     suspend fun predict(
         @Body body: PredictRequest
@@ -38,5 +38,4 @@ interface ApiService {
 
     @POST("all-history")
     suspend fun getAllHistory(): AllHistoryResponse
-
 }

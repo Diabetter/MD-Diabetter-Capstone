@@ -18,6 +18,7 @@ import com.example.diabetter.adapter.RecommendationMenuAdapter
 import com.example.diabetter.adapter.setupRecyclerView
 import com.example.diabetter.data.MenuData
 import com.example.diabetter.data.Result
+import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
@@ -32,7 +33,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var menuTodayMenuBinding: TodayMenuBinding
 
-    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
+    private val loginPreferences: LoginPreferences by lazy {
+        LoginPreferences(requireContext())
+    }
     private var predictResponses: List<PredictResponse> = emptyList()
     private var makananResponses: List<MakananResponse> = emptyList()
 
@@ -45,48 +48,54 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val viewModel = ObtainViewModelFactory.obtainViewModelFactory<HomeViewModel>(requireContext())
 
-        viewModel.predict(staticUID, 1).observe(requireActivity()){result ->
-            if(result != null){
-                when(result){
-                    is Result.Loading -> {
-                        binding.progress.visibility = View.VISIBLE
-                    }
-                    is Result.Error -> {
-                        binding.progress.visibility = View.VISIBLE
-                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                    }
-                    is Result.Success -> {
-                        val data = result.data
-                        Log.d("Testt", data.toString())
-                        predictResponses = data
-
-                        val foodNames = predictResponses.flatMap {
-                            listOf(it.data.food1, it.data.food2, it.data.food3)
+        loginPreferences.retrieveUid()?.let {
+            viewModel.predict(it, 1).observe(requireActivity()){ result ->
+                if(result != null){
+                    when(result){
+                        is Result.Loading -> {
+                            binding.progress.visibility = View.VISIBLE
                         }
 
-                        foodNames.forEach { foodName ->
-                            val getMakananRequest = GetMakananRequest(foodName)
-                            viewModel.getMakanan(getMakananRequest).observe(this) { result ->
-                                when (result) {
-                                    is Result.Loading -> {
-                                        binding.progress.visibility = View.VISIBLE
-                                    }
-                                    is Result.Error -> {
-                                        Log.e("HomeFragment", "Error: ${result.error}")
-                                    }
-                                    is Result.Success -> {
-                                        val makananResponse = result.data
-                                        makananResponses = makananResponses + makananResponse
-                                        if (makananResponses.size == foodNames.size) {
-                                            setupRecyclerView()
+                        is Result.Error -> {
+                            binding.progress.visibility = View.VISIBLE
+                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        }
+
+                        is Result.Success -> {
+                            val data = result.data
+                            Log.d("Testt", data.toString())
+                            predictResponses = data
+
+                            val foodNames = predictResponses.flatMap {
+                                listOf(it.data.food1, it.data.food2, it.data.food3)
+                            }
+
+                            foodNames.forEach { foodName ->
+                                val getMakananRequest = GetMakananRequest(foodName)
+                                viewModel.getMakanan(getMakananRequest).observe(this) { result ->
+                                    when (result) {
+                                        is Result.Loading -> {
+                                            binding.progress.visibility = View.VISIBLE
                                         }
-                                        binding.progress.visibility = View.GONE
-//                                        Log.d("Testt", makananResponses.toString())
+
+                                        is Result.Error -> {
+                                            Log.e("HomeFragment", "Error: ${result.error}")
+                                        }
+
+                                        is Result.Success -> {
+                                            val makananResponse = result.data
+                                            makananResponses = makananResponses + makananResponse
+                                            if (makananResponses.size == foodNames.size) {
+                                                setupRecyclerView()
+                                            }
+                                            binding.progress.visibility = View.GONE
+    //                                        Log.d("Testt", makananResponses.toString())
+                                        }
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
             }

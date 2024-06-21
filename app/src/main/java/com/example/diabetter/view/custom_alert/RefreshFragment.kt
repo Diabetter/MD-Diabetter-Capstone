@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.diabetter.R
 import com.example.diabetter.adapter.setupRecyclerView
 import com.example.diabetter.data.Result
+import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
@@ -26,7 +27,9 @@ class RefreshFragment : DialogFragment() {
     private var _homeBinding: FragmentHomeBinding? = null
     private val homeBinding get() = _homeBinding!!
 
-    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
+    private val loginPreferences: LoginPreferences by lazy {
+        LoginPreferences(requireContext())
+    }
     private var predictResponses: List<PredictResponse> = emptyList()
     private var makananResponses: List<MakananResponse> = emptyList()
 
@@ -78,48 +81,54 @@ class RefreshFragment : DialogFragment() {
         }
 
         binding.btnRefresh.setOnClickListener {
-            viewModel.predict(staticUID, rating).observe(viewLifecycleOwner){result ->
-                if(result != null){
-                    when(result){
-                        is Result.Loading -> {
-                            binding.progressRefresh.visibility = View.VISIBLE
-                        }
-                        is Result.Error -> {
-                            binding.progressRefresh.visibility = View.VISIBLE
-                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                        }
-                        is Result.Success -> {
-                            val data = result.data
-                            Log.d("Testt", data.toString())
-                            predictResponses = data
-
-                            val foodNames = predictResponses.flatMap {
-                                listOf(it.data.food1, it.data.food2, it.data.food3)
+            loginPreferences.retrieveUid()?.let { it1 ->
+                viewModel.predict(it1, rating).observe(viewLifecycleOwner){ result ->
+                    if(result != null){
+                        when(result){
+                            is Result.Loading -> {
+                                binding.progressRefresh.visibility = View.VISIBLE
                             }
 
-                            completedRequests = 0
-                            makananResponses = emptyList()
+                            is Result.Error -> {
+                                binding.progressRefresh.visibility = View.VISIBLE
+                                Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                            }
 
-                            foodNames.forEach { foodName ->
-                                val getMakananRequest = GetMakananRequest(foodName)
-//                                Log.d("Testt", getMakananRequest.toString())
-                                viewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner) { result ->
-                                    when (result) {
-                                        is Result.Loading -> {
-                                            binding.progressRefresh.visibility = View.VISIBLE
-                                        }
-                                        is Result.Error -> {
-                                            Log.e("HomeFragment", "Error: ${result.error}")
-                                        }
-                                        is Result.Success -> {
-                                            val makananResponse = result.data
-                                            makananResponses = makananResponses + makananResponse
-                                            completedRequests++
-//                                            Log.d("Testt", makananResponses.toString())
-                                            if (makananResponses.size == foodNames.size) {
-                                                setupRecyclerView()
-                                                binding.progressRefresh.visibility = View.GONE
-                                                dismiss()
+                            is Result.Success -> {
+                                val data = result.data
+                                Log.d("Testt", data.toString())
+                                predictResponses = data
+
+                                val foodNames = predictResponses.flatMap {
+                                    listOf(it.data.food1, it.data.food2, it.data.food3)
+                                }
+
+                                completedRequests = 0
+                                makananResponses = emptyList()
+
+                                foodNames.forEach { foodName ->
+                                    val getMakananRequest = GetMakananRequest(foodName)
+        //                                Log.d("Testt", getMakananRequest.toString())
+                                    viewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner) { result ->
+                                        when (result) {
+                                            is Result.Loading -> {
+                                                binding.progressRefresh.visibility = View.VISIBLE
+                                            }
+
+                                            is Result.Error -> {
+                                                Log.e("HomeFragment", "Error: ${result.error}")
+                                            }
+
+                                            is Result.Success -> {
+                                                val makananResponse = result.data
+                                                makananResponses = makananResponses + makananResponse
+                                                completedRequests++
+        //                                            Log.d("Testt", makananResponses.toString())
+                                                if (makananResponses.size == foodNames.size) {
+                                                    setupRecyclerView()
+                                                    binding.progressRefresh.visibility = View.GONE
+                                                    dismiss()
+                                                }
                                             }
                                         }
                                     }

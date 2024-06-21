@@ -1,0 +1,368 @@
+Index: app/src/main/java/com/example/diabetter/data/repository/MenuRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.diabetter.data.repository\r\n\r\nimport android.util.Log\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.liveData\r\nimport com.example.diabetter.data.Result\r\nimport com.example.diabetter.data.preference.LoginPreferences\r\nimport com.example.diabetter.data.remote.request.GetMakananRequest\r\nimport com.example.diabetter.data.remote.request.PredictRequest\r\nimport com.example.diabetter.data.remote.request.StoreMenuRequest\r\nimport com.example.diabetter.data.remote.request.UserHistoryRequest\r\nimport com.example.diabetter.data.remote.response.AllHistoryResponse\r\nimport com.example.diabetter.data.remote.response.HistoryResponse\r\nimport com.example.diabetter.data.remote.response.MakananResponse\r\nimport com.example.diabetter.data.remote.response.PredictResponse\r\nimport com.example.diabetter.data.remote.response.StoreMenuResponse\r\nimport com.example.diabetter.data.remote.retrofit.ApiService\r\nimport kotlinx.coroutines.async\r\nimport kotlinx.coroutines.awaitAll\r\nimport kotlinx.coroutines.coroutineScope\r\nimport retrofit2.HttpException\r\n\r\nclass MenuRepository(\r\n    private var apiService : ApiService,\r\n) {\r\n    fun predict(\r\n        uid: String,\r\n        rating: Int\r\n    ): LiveData<Result<List<PredictResponse>>> = liveData {\r\n        emit(Result.Loading)\r\n        try {\r\n            val responses = coroutineScope {\r\n                val deferredResponses = List(5) {\r\n                    async {\r\n                        val requestBody = PredictRequest(uid, rating)\r\n                        apiService.predict(requestBody)\r\n                    }\r\n                }\r\n                deferredResponses.awaitAll()\r\n            }\r\n            emit(Result.Success(responses))\r\n        } catch (e: HttpException) {\r\n            emit(Result.Error(e.message.toString()))\r\n        } catch (e: Exception) {\r\n            emit(Result.Error(e.message.toString()))\r\n        }\r\n    }\r\n\r\n    fun getMakanan(\r\n        namaMakanan : GetMakananRequest\r\n    ) : LiveData<Result<MakananResponse>> = liveData{\r\n        emit(Result.Loading)\r\n        try{\r\n            val response = apiService.getMakanan(namaMakanan)\r\n            emit(Result.Success(response))\r\n        } catch (e: HttpException) {\r\n            emit(Result.Error(e.message.toString()))\r\n        } catch (e: Exception) {\r\n            emit(Result.Error(e.message.toString()))\r\n        }\r\n\r\n    }\r\n\r\n    fun storeMenu(\r\n        menu : StoreMenuRequest\r\n    ) : LiveData<Result<StoreMenuResponse>> = liveData{\r\n        emit(Result.Loading)\r\n        try {\r\n            val response = apiService.storePredict(menu)\r\n            emit(Result.Success(response))\r\n        }catch (e: HttpException) {\r\n            emit(Result.Error(e.message.toString()))\r\n        } catch (e: Exception) {\r\n            emit(Result.Error(e.message.toString()))\r\n        }\r\n\r\n    }\r\n\r\n    fun getHistory(\r\n        uid : UserHistoryRequest\r\n    ) : LiveData<Result<HistoryResponse>> = liveData{\r\n        emit(Result.Loading)\r\n        try {\r\n            val response = apiService.getHistory(uid)\r\n            emit(Result.Success(response))\r\n        }catch (e: HttpException) {\r\n            emit(Result.Error(e.message.toString()))\r\n        } catch (e: Exception) {\r\n            emit(Result.Error(e.message.toString()))\r\n        }\r\n    }\r\n\r\n    fun getAllHistory() : LiveData<Result<AllHistoryResponse>> = liveData {\r\n        emit(Result.Loading)\r\n        try {\r\n            val response = apiService.getAllHistory()\r\n            emit(Result.Success(response))\r\n        }catch (e: HttpException) {\r\n            emit(Result.Error(e.message.toString()))\r\n        } catch (e: Exception) {\r\n            emit(Result.Error(e.message.toString()))\r\n        }\r\n    }\r\n    companion object {\r\n        @Volatile\r\n        private var instance: MenuRepository? = null\r\n\r\n        fun getInstance(\r\n            apiService: ApiService,\r\n\r\n            ): MenuRepository =\r\n            instance ?: synchronized(this) {\r\n                instance ?: MenuRepository(\r\n                    apiService\r\n                ).also {\r\n                    instance = it\r\n                }\r\n            }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/data/repository/MenuRepository.kt b/app/src/main/java/com/example/diabetter/data/repository/MenuRepository.kt
+--- a/app/src/main/java/com/example/diabetter/data/repository/MenuRepository.kt	(revision 16d40ea22381ca03a8ef9d1c986d72eec1d9e5d7)
++++ b/app/src/main/java/com/example/diabetter/data/repository/MenuRepository.kt	(date 1718942937244)
+@@ -1,10 +1,9 @@
+ package com.example.diabetter.data.repository
+ 
+-import android.util.Log
+ import androidx.lifecycle.LiveData
+ import androidx.lifecycle.liveData
+ import com.example.diabetter.data.Result
+-import com.example.diabetter.data.preference.LoginPreferences
++import com.example.diabetter.data.api.FoodApi
+ import com.example.diabetter.data.remote.request.GetMakananRequest
+ import com.example.diabetter.data.remote.request.PredictRequest
+ import com.example.diabetter.data.remote.request.StoreMenuRequest
+@@ -14,14 +13,13 @@
+ import com.example.diabetter.data.remote.response.MakananResponse
+ import com.example.diabetter.data.remote.response.PredictResponse
+ import com.example.diabetter.data.remote.response.StoreMenuResponse
+-import com.example.diabetter.data.remote.retrofit.ApiService
+ import kotlinx.coroutines.async
+ import kotlinx.coroutines.awaitAll
+ import kotlinx.coroutines.coroutineScope
+ import retrofit2.HttpException
+ 
+ class MenuRepository(
+-    private var apiService : ApiService,
++    private var apiService : FoodApi,
+ ) {
+     fun predict(
+         uid: String,
+@@ -106,7 +104,7 @@
+         private var instance: MenuRepository? = null
+ 
+         fun getInstance(
+-            apiService: ApiService,
++            apiService: FoodApi,
+ 
+             ): MenuRepository =
+             instance ?: synchronized(this) {
+Index: app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiConfig.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.diabetter.data.remote.retrofit\r\n\r\nimport com.example.diabetter.BuildConfig\r\nimport okhttp3.OkHttpClient\r\nimport okhttp3.logging.HttpLoggingInterceptor\r\nimport retrofit2.Retrofit\r\nimport retrofit2.converter.gson.GsonConverterFactory\r\n\r\nclass ApiConfig {\r\n    companion object{\r\n        private const val BASE_URL = BuildConfig.BASE_URL\r\n        fun getApiSevice(): ApiService {\r\n            val loggingInterceptor = if(BuildConfig.DEBUG) {\r\n                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)\r\n            } else {\r\n                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)\r\n            }\r\n            val client = OkHttpClient.Builder()\r\n                .addInterceptor(loggingInterceptor)\r\n                .build()\r\n            val retrofit = Retrofit.Builder()\r\n                .baseUrl(BASE_URL)\r\n                .addConverterFactory(GsonConverterFactory.create())\r\n                .client(client)\r\n                .build()\r\n\r\n            return retrofit.create(ApiService::class.java)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiConfig.kt b/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiConfig.kt
+--- a/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiConfig.kt	(revision 16d40ea22381ca03a8ef9d1c986d72eec1d9e5d7)
++++ b/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiConfig.kt	(date 1718942937296)
+@@ -1,6 +1,7 @@
+ package com.example.diabetter.data.remote.retrofit
+ 
+ import com.example.diabetter.BuildConfig
++import com.example.diabetter.data.api.FoodApi
+ import okhttp3.OkHttpClient
+ import okhttp3.logging.HttpLoggingInterceptor
+ import retrofit2.Retrofit
+@@ -9,7 +10,7 @@
+ class ApiConfig {
+     companion object{
+         private const val BASE_URL = BuildConfig.BASE_URL
+-        fun getApiSevice(): ApiService {
++        fun getApiSevice(): FoodApi {
+             val loggingInterceptor = if(BuildConfig.DEBUG) {
+                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+             } else {
+@@ -24,7 +25,7 @@
+                 .client(client)
+                 .build()
+ 
+-            return retrofit.create(ApiService::class.java)
++            return retrofit.create(FoodApi::class.java)
+         }
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiService.kt b/app/src/main/java/com/example/diabetter/data/api/FoodApi.kt
+rename from app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiService.kt
+rename to app/src/main/java/com/example/diabetter/data/api/FoodApi.kt
+--- a/app/src/main/java/com/example/diabetter/data/remote/retrofit/ApiService.kt	(revision 16d40ea22381ca03a8ef9d1c986d72eec1d9e5d7)
++++ b/app/src/main/java/com/example/diabetter/data/api/FoodApi.kt	(date 1718942937250)
+@@ -1,4 +1,4 @@
+-package com.example.diabetter.data.remote.retrofit
++package com.example.diabetter.data.api
+ 
+ import com.example.diabetter.data.remote.request.GetMakananRequest
+ import com.example.diabetter.data.remote.request.PredictRequest
+@@ -9,13 +9,10 @@
+ import com.example.diabetter.data.remote.response.MakananResponse
+ import com.example.diabetter.data.remote.response.PredictResponse
+ import com.example.diabetter.data.remote.response.StoreMenuResponse
+-import okhttp3.ResponseBody
+ import retrofit2.http.Body
+-import retrofit2.http.Field
+-import retrofit2.http.FormUrlEncoded
+ import retrofit2.http.POST
+ 
+-interface ApiService {
++interface FoodApi {
+     @POST("temp-predict")
+     suspend fun predict(
+         @Body body: PredictRequest
+@@ -38,5 +35,4 @@
+ 
+     @POST("all-history")
+     suspend fun getAllHistory(): AllHistoryResponse
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/diabetter/view/custom_alert/RefreshFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.diabetter.view.custom_alert\r\n\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.DialogFragment\r\nimport com.example.diabetter.R\r\nimport com.example.diabetter.adapter.setupRecyclerView\r\nimport com.example.diabetter.data.Result\r\nimport com.example.diabetter.data.remote.request.GetMakananRequest\r\nimport com.example.diabetter.data.remote.response.MakananResponse\r\nimport com.example.diabetter.data.remote.response.PredictResponse\r\nimport com.example.diabetter.databinding.FragmentHomeBinding\r\nimport com.example.diabetter.databinding.FragmentRefreshBinding\r\nimport com.example.diabetter.utils.ObtainViewModelFactory\r\nimport com.example.diabetter.view.main.ui.home.HomeViewModel\r\n\r\nclass RefreshFragment : DialogFragment() {\r\n    private var _binding: FragmentRefreshBinding? = null\r\n    private lateinit var viewModel: RefreshFragmentViewModel\r\n    private val binding get() = _binding!!\r\n\r\n    private var _homeBinding: FragmentHomeBinding? = null\r\n    private val homeBinding get() = _homeBinding!!\r\n\r\n    val staticUID = \"GN2peLqjPWUIHTR4iWVX1lHrL3s1\"\r\n    private var predictResponses: List<PredictResponse> = emptyList()\r\n    private var makananResponses: List<MakananResponse> = emptyList()\r\n\r\n    private var completedRequests = 0\r\n    private var rating = 1\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setStyle(DialogFragment.STYLE_NORMAL, R.style.custom_dialog);\r\n        viewModel = ObtainViewModelFactory.obtainViewModelFactory<RefreshFragmentViewModel>(requireContext())\r\n    }\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n        _binding = FragmentRefreshBinding.inflate(inflater, container, false)\r\n        _homeBinding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        val view = binding.root\r\n\r\n        return view\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        val binding = binding\r\n\r\n        binding.btnCancel.setOnClickListener {dismiss()}\r\n\r\n        val radioGroup = binding.rgRating\r\n        radioGroup.setOnCheckedChangeListener { _, checkedId ->\r\n            when (checkedId) {\r\n                R.id.rb0 -> {\r\n                    rating = 1\r\n                }\r\n                R.id.rb1 -> {\r\n                    rating = 1\r\n                }\r\n                R.id.rb2 -> {\r\n                    rating = 2\r\n                }\r\n                R.id.rb3 -> {\r\n                    rating = 3\r\n                }\r\n                R.id.rb4 -> {\r\n                    rating = 4\r\n                }\r\n                else -> \"\"\r\n            }\r\n        }\r\n\r\n        binding.btnRefresh.setOnClickListener {\r\n            viewModel.predict(staticUID, rating).observe(viewLifecycleOwner){result ->\r\n                if(result != null){\r\n                    when(result){\r\n                        is Result.Loading -> {\r\n                            binding.progressRefresh.visibility = View.VISIBLE\r\n                        }\r\n                        is Result.Error -> {\r\n                            binding.progressRefresh.visibility = View.VISIBLE\r\n                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()\r\n                        }\r\n                        is Result.Success -> {\r\n                            val data = result.data\r\n                            Log.d(\"Testt\", data.toString())\r\n                            predictResponses = data\r\n\r\n                            val foodNames = predictResponses.flatMap {\r\n                                listOf(it.data.food1, it.data.food2, it.data.food3)\r\n                            }\r\n\r\n                            completedRequests = 0\r\n                            makananResponses = emptyList()\r\n\r\n                            foodNames.forEach { foodName ->\r\n                                val getMakananRequest = GetMakananRequest(foodName)\r\n//                                Log.d(\"Testt\", getMakananRequest.toString())\r\n                                viewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner) { result ->\r\n                                    when (result) {\r\n                                        is Result.Loading -> {\r\n                                            binding.progressRefresh.visibility = View.VISIBLE\r\n                                        }\r\n                                        is Result.Error -> {\r\n                                            Log.e(\"HomeFragment\", \"Error: ${result.error}\")\r\n                                        }\r\n                                        is Result.Success -> {\r\n                                            val makananResponse = result.data\r\n                                            makananResponses = makananResponses + makananResponse\r\n                                            completedRequests++\r\n//                                            Log.d(\"Testt\", makananResponses.toString())\r\n                                            if (makananResponses.size == foodNames.size) {\r\n                                                setupRecyclerView()\r\n                                                binding.progressRefresh.visibility = View.GONE\r\n                                                dismiss()\r\n                                            }\r\n                                        }\r\n                                    }\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n    private fun setupRecyclerView() {\r\n        setupRecyclerView(homeBinding.rvRecommendationMenu, predictResponses, makananResponses) { mostVisibleItemPosition ->\r\n            homeBinding.apply {\r\n                circle1.setImageResource(\r\n                    if (mostVisibleItemPosition == 0) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle1.requestLayout()\r\n\r\n                circle2.setImageResource(\r\n                    if (mostVisibleItemPosition == 1) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle2.requestLayout()\r\n\r\n                circle3.setImageResource(\r\n                    if (mostVisibleItemPosition == 2) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle3.requestLayout()\r\n\r\n                circle4.setImageResource(\r\n                    if (mostVisibleItemPosition == 3) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle4.requestLayout()\r\n\r\n                circle5.setImageResource(\r\n                    if (mostVisibleItemPosition == 4) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle5.requestLayout()\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/view/custom_alert/RefreshFragment.kt b/app/src/main/java/com/example/diabetter/view/custom_alert/RefreshFragment.kt
+--- a/app/src/main/java/com/example/diabetter/view/custom_alert/RefreshFragment.kt	(revision 16d40ea22381ca03a8ef9d1c986d72eec1d9e5d7)
++++ b/app/src/main/java/com/example/diabetter/view/custom_alert/RefreshFragment.kt	(date 1718942937299)
+@@ -10,6 +10,7 @@
+ import com.example.diabetter.R
+ import com.example.diabetter.adapter.setupRecyclerView
+ import com.example.diabetter.data.Result
++import com.example.diabetter.data.preference.LoginPreferences
+ import com.example.diabetter.data.remote.request.GetMakananRequest
+ import com.example.diabetter.data.remote.response.MakananResponse
+ import com.example.diabetter.data.remote.response.PredictResponse
+@@ -26,7 +27,9 @@
+     private var _homeBinding: FragmentHomeBinding? = null
+     private val homeBinding get() = _homeBinding!!
+ 
+-    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
++    private val loginPreferences: LoginPreferences by lazy {
++        LoginPreferences(requireContext())
++    }
+     private var predictResponses: List<PredictResponse> = emptyList()
+     private var makananResponses: List<MakananResponse> = emptyList()
+ 
+@@ -78,48 +81,54 @@
+         }
+ 
+         binding.btnRefresh.setOnClickListener {
+-            viewModel.predict(staticUID, rating).observe(viewLifecycleOwner){result ->
+-                if(result != null){
+-                    when(result){
+-                        is Result.Loading -> {
+-                            binding.progressRefresh.visibility = View.VISIBLE
+-                        }
+-                        is Result.Error -> {
+-                            binding.progressRefresh.visibility = View.VISIBLE
+-                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+-                        }
+-                        is Result.Success -> {
+-                            val data = result.data
+-                            Log.d("Testt", data.toString())
+-                            predictResponses = data
++            loginPreferences.retrieveUid()?.let { it1 ->
++                viewModel.predict(it1, rating).observe(viewLifecycleOwner){ result ->
++                    if(result != null){
++                        when(result){
++                            is Result.Loading -> {
++                                binding.progressRefresh.visibility = View.VISIBLE
++                            }
++
++                            is Result.Error -> {
++                                binding.progressRefresh.visibility = View.VISIBLE
++                                Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
++                            }
++
++                            is Result.Success -> {
++                                val data = result.data
++                                Log.d("Testt", data.toString())
++                                predictResponses = data
+ 
+-                            val foodNames = predictResponses.flatMap {
+-                                listOf(it.data.food1, it.data.food2, it.data.food3)
+-                            }
++                                val foodNames = predictResponses.flatMap {
++                                    listOf(it.data.food1, it.data.food2, it.data.food3)
++                                }
+ 
+-                            completedRequests = 0
+-                            makananResponses = emptyList()
++                                completedRequests = 0
++                                makananResponses = emptyList()
+ 
+-                            foodNames.forEach { foodName ->
+-                                val getMakananRequest = GetMakananRequest(foodName)
+-//                                Log.d("Testt", getMakananRequest.toString())
+-                                viewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner) { result ->
+-                                    when (result) {
+-                                        is Result.Loading -> {
+-                                            binding.progressRefresh.visibility = View.VISIBLE
+-                                        }
+-                                        is Result.Error -> {
+-                                            Log.e("HomeFragment", "Error: ${result.error}")
+-                                        }
+-                                        is Result.Success -> {
+-                                            val makananResponse = result.data
+-                                            makananResponses = makananResponses + makananResponse
+-                                            completedRequests++
+-//                                            Log.d("Testt", makananResponses.toString())
+-                                            if (makananResponses.size == foodNames.size) {
+-                                                setupRecyclerView()
+-                                                binding.progressRefresh.visibility = View.GONE
+-                                                dismiss()
++                                foodNames.forEach { foodName ->
++                                    val getMakananRequest = GetMakananRequest(foodName)
++        //                                Log.d("Testt", getMakananRequest.toString())
++                                    viewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner) { result ->
++                                        when (result) {
++                                            is Result.Loading -> {
++                                                binding.progressRefresh.visibility = View.VISIBLE
++                                            }
++
++                                            is Result.Error -> {
++                                                Log.e("HomeFragment", "Error: ${result.error}")
++                                            }
++
++                                            is Result.Success -> {
++                                                val makananResponse = result.data
++                                                makananResponses = makananResponses + makananResponse
++                                                completedRequests++
++        //                                            Log.d("Testt", makananResponses.toString())
++                                                if (makananResponses.size == foodNames.size) {
++                                                    setupRecyclerView()
++                                                    binding.progressRefresh.visibility = View.GONE
++                                                    dismiss()
++                                                }
+                                             }
+                                         }
+                                     }
+Index: app/src/main/java/com/example/diabetter/view/main/ui/home/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.diabetter.view.main.ui.home\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport com.example.diabetter.R\r\nimport com.example.diabetter.databinding.FragmentHomeBinding\r\nimport com.example.diabetter.databinding.TodayMenuBinding\r\nimport com.example.diabetter.view.detail_menu.DetailMenuActivity\r\nimport com.example.diabetter.adapter.RecommendationMenuAdapter\r\nimport com.example.diabetter.adapter.setupRecyclerView\r\nimport com.example.diabetter.data.MenuData\r\nimport com.example.diabetter.data.Result\r\nimport com.example.diabetter.data.remote.request.GetMakananRequest\r\nimport com.example.diabetter.data.remote.response.MakananResponse\r\nimport com.example.diabetter.data.remote.response.PredictResponse\r\nimport com.example.diabetter.databinding.OtherFoodBinding\r\nimport com.example.diabetter.utils.ObtainViewModelFactory\r\nimport com.example.diabetter.view.custom_alert.RefreshFragment\r\nimport com.example.diabetter.view.detail_food.DetailFoodActivity\r\nimport com.example.diabetter.view.detail_menu_today.DetailMenuTodayActivity\r\n\r\nclass HomeFragment : Fragment() {\r\n\r\n    private var _binding: FragmentHomeBinding? = null\r\n    private lateinit var menuTodayMenuBinding: TodayMenuBinding\r\n\r\n    val staticUID = \"GN2peLqjPWUIHTR4iWVX1lHrL3s1\"\r\n    private var predictResponses: List<PredictResponse> = emptyList()\r\n    private var makananResponses: List<MakananResponse> = emptyList()\r\n\r\n\r\n    // This property is only valid between onCreateView and\r\n    // onDestroyView.\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        val viewModel = ObtainViewModelFactory.obtainViewModelFactory<HomeViewModel>(requireContext())\r\n\r\n        viewModel.predict(staticUID, 1).observe(requireActivity()){result ->\r\n            if(result != null){\r\n                when(result){\r\n                    is Result.Loading -> {\r\n                        binding.progress.visibility = View.VISIBLE\r\n                    }\r\n                    is Result.Error -> {\r\n                        binding.progress.visibility = View.VISIBLE\r\n                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()\r\n                    }\r\n                    is Result.Success -> {\r\n                        val data = result.data\r\n                        Log.d(\"Testt\", data.toString())\r\n                        predictResponses = data\r\n\r\n                        val foodNames = predictResponses.flatMap {\r\n                            listOf(it.data.food1, it.data.food2, it.data.food3)\r\n                        }\r\n\r\n                        foodNames.forEach { foodName ->\r\n                            val getMakananRequest = GetMakananRequest(foodName)\r\n                            viewModel.getMakanan(getMakananRequest).observe(this) { result ->\r\n                                when (result) {\r\n                                    is Result.Loading -> {\r\n                                        binding.progress.visibility = View.VISIBLE\r\n                                    }\r\n                                    is Result.Error -> {\r\n                                        Log.e(\"HomeFragment\", \"Error: ${result.error}\")\r\n                                    }\r\n                                    is Result.Success -> {\r\n                                        val makananResponse = result.data\r\n                                        makananResponses = makananResponses + makananResponse\r\n                                        if (makananResponses.size == foodNames.size) {\r\n                                            setupRecyclerView()\r\n                                        }\r\n                                        binding.progress.visibility = View.GONE\r\n//                                        Log.d(\"Testt\", makananResponses.toString())\r\n                                    }\r\n                                }\r\n                            }\r\n                        }\r\n\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n        _binding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        val view = binding.root\r\n\r\n        return view\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        val binding = binding\r\n\r\n        menuTodayMenuBinding = binding.menuToday\r\n\r\n        menuTodayMenuBinding.apply {\r\n            listOf(tvSeeDetail, tvDetailMenuToday).forEach { tv ->\r\n                tv.setOnClickListener {\r\n                    val intent = Intent(requireContext(), DetailMenuTodayActivity::class.java)\r\n                    startActivity(intent)\r\n                }\r\n            }\r\n        }\r\n\r\n        binding.tvRefresh2.setOnClickListener {\r\n            val showPopUpRefresh = RefreshFragment()\r\n            showPopUpRefresh.show((activity as AppCompatActivity).supportFragmentManager, \"RefreshFragment\")\r\n        }\r\n\r\n        if (predictResponses.isNotEmpty()) {\r\n            setupRecyclerView()\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n        Log.d(\"Testt\", \"Destroy\")\r\n    }\r\n\r\n    private fun setupRecyclerView() {\r\n        val binding = _binding ?: return\r\n\r\n        setupRecyclerView(binding.rvRecommendationMenu, predictResponses, makananResponses) { mostVisibleItemPosition ->\r\n            binding.apply {\r\n                circle1.setImageResource(\r\n                    if (mostVisibleItemPosition == 0) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle1.requestLayout()\r\n\r\n                circle2.setImageResource(\r\n                    if (mostVisibleItemPosition == 1) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle2.requestLayout()\r\n\r\n                circle3.setImageResource(\r\n                    if (mostVisibleItemPosition == 2) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle3.requestLayout()\r\n\r\n                circle4.setImageResource(\r\n                    if (mostVisibleItemPosition == 3) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle4.requestLayout()\r\n\r\n                circle5.setImageResource(\r\n                    if (mostVisibleItemPosition == 4) R.drawable.active_circle\r\n                    else R.drawable.inactive_circle\r\n                )\r\n                circle5.requestLayout()\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/view/main/ui/home/HomeFragment.kt b/app/src/main/java/com/example/diabetter/view/main/ui/home/HomeFragment.kt
+--- a/app/src/main/java/com/example/diabetter/view/main/ui/home/HomeFragment.kt	(revision 16d40ea22381ca03a8ef9d1c986d72eec1d9e5d7)
++++ b/app/src/main/java/com/example/diabetter/view/main/ui/home/HomeFragment.kt	(date 1718942937302)
+@@ -18,6 +18,7 @@
+ import com.example.diabetter.adapter.setupRecyclerView
+ import com.example.diabetter.data.MenuData
+ import com.example.diabetter.data.Result
++import com.example.diabetter.data.preference.LoginPreferences
+ import com.example.diabetter.data.remote.request.GetMakananRequest
+ import com.example.diabetter.data.remote.response.MakananResponse
+ import com.example.diabetter.data.remote.response.PredictResponse
+@@ -32,7 +33,9 @@
+     private var _binding: FragmentHomeBinding? = null
+     private lateinit var menuTodayMenuBinding: TodayMenuBinding
+ 
+-    val staticUID = "GN2peLqjPWUIHTR4iWVX1lHrL3s1"
++    private val loginPreferences: LoginPreferences by lazy {
++        LoginPreferences(requireContext())
++    }
+     private var predictResponses: List<PredictResponse> = emptyList()
+     private var makananResponses: List<MakananResponse> = emptyList()
+ 
+@@ -45,48 +48,54 @@
+         super.onCreate(savedInstanceState)
+         val viewModel = ObtainViewModelFactory.obtainViewModelFactory<HomeViewModel>(requireContext())
+ 
+-        viewModel.predict(staticUID, 1).observe(requireActivity()){result ->
+-            if(result != null){
+-                when(result){
+-                    is Result.Loading -> {
+-                        binding.progress.visibility = View.VISIBLE
+-                    }
+-                    is Result.Error -> {
+-                        binding.progress.visibility = View.VISIBLE
+-                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+-                    }
+-                    is Result.Success -> {
+-                        val data = result.data
+-                        Log.d("Testt", data.toString())
+-                        predictResponses = data
++        loginPreferences.retrieveUid()?.let {
++            viewModel.predict(it, 1).observe(requireActivity()){ result ->
++                if(result != null){
++                    when(result){
++                        is Result.Loading -> {
++                            binding.progress.visibility = View.VISIBLE
++                        }
++
++                        is Result.Error -> {
++                            binding.progress.visibility = View.VISIBLE
++                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
++                        }
++
++                        is Result.Success -> {
++                            val data = result.data
++                            Log.d("Testt", data.toString())
++                            predictResponses = data
+ 
+-                        val foodNames = predictResponses.flatMap {
+-                            listOf(it.data.food1, it.data.food2, it.data.food3)
+-                        }
++                            val foodNames = predictResponses.flatMap {
++                                listOf(it.data.food1, it.data.food2, it.data.food3)
++                            }
+ 
+-                        foodNames.forEach { foodName ->
+-                            val getMakananRequest = GetMakananRequest(foodName)
+-                            viewModel.getMakanan(getMakananRequest).observe(this) { result ->
+-                                when (result) {
+-                                    is Result.Loading -> {
+-                                        binding.progress.visibility = View.VISIBLE
+-                                    }
+-                                    is Result.Error -> {
+-                                        Log.e("HomeFragment", "Error: ${result.error}")
+-                                    }
+-                                    is Result.Success -> {
+-                                        val makananResponse = result.data
+-                                        makananResponses = makananResponses + makananResponse
+-                                        if (makananResponses.size == foodNames.size) {
+-                                            setupRecyclerView()
+-                                        }
+-                                        binding.progress.visibility = View.GONE
+-//                                        Log.d("Testt", makananResponses.toString())
+-                                    }
+-                                }
+-                            }
+-                        }
++                            foodNames.forEach { foodName ->
++                                val getMakananRequest = GetMakananRequest(foodName)
++                                viewModel.getMakanan(getMakananRequest).observe(this) { result ->
++                                    when (result) {
++                                        is Result.Loading -> {
++                                            binding.progress.visibility = View.VISIBLE
++                                        }
++
++                                        is Result.Error -> {
++                                            Log.e("HomeFragment", "Error: ${result.error}")
++                                        }
++
++                                        is Result.Success -> {
++                                            val makananResponse = result.data
++                                            makananResponses = makananResponses + makananResponse
++                                            if (makananResponses.size == foodNames.size) {
++                                                setupRecyclerView()
++                                            }
++                                            binding.progress.visibility = View.GONE
++    //                                        Log.d("Testt", makananResponses.toString())
++                                        }
++                                    }
++                                }
++                            }
+ 
++                        }
+                     }
+                 }
+             }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.diabetter.data.Result
+import com.example.diabetter.data.api.FoodApi
 import com.example.diabetter.data.preference.LoginPreferences
 import com.example.diabetter.data.remote.request.GetMakananRequest
 import com.example.diabetter.data.remote.request.PredictRequest
@@ -14,14 +15,13 @@ import com.example.diabetter.data.remote.response.HistoryResponse
 import com.example.diabetter.data.remote.response.MakananResponse
 import com.example.diabetter.data.remote.response.PredictResponse
 import com.example.diabetter.data.remote.response.StoreMenuResponse
-import com.example.diabetter.data.remote.retrofit.ApiService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import retrofit2.HttpException
 
 class MenuRepository(
-    private var apiService : ApiService,
+    private var apiService : FoodApi,
 ) {
     fun predict(
         uid: String,
@@ -106,7 +106,7 @@ class MenuRepository(
         private var instance: MenuRepository? = null
 
         fun getInstance(
-            apiService: ApiService,
+            apiService: FoodApi,
 
             ): MenuRepository =
             instance ?: synchronized(this) {

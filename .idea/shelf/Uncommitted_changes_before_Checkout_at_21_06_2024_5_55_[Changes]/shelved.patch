@@ -1,0 +1,45 @@
+Index: app/src/main/java/com/example/diabetter/view/main/ui/menu/MenuFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.diabetter.view.main.ui.menu\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.lifecycle.Observer\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.diabetter.R\r\nimport com.example.diabetter.databinding.FragmentMenuBinding\r\nimport com.example.diabetter.data.Result\r\nimport com.example.diabetter.data.remote.request.GetMakananRequest\r\nimport com.example.diabetter.data.remote.response.DocsItem\r\nimport com.example.diabetter.data.remote.response.MakananResponse\r\nimport com.example.diabetter.utils.ObtainViewModelFactory\r\nimport com.example.diabetter.view.main.ui.menu.adapter.PopularMenuAdapter\r\n\r\nclass MenuFragment : Fragment() {\r\n\r\n    private var _binding: FragmentMenuBinding? = null\r\n\r\n    // This property is only valid between onCreateView and\r\n    // onDestroyView.\r\n    private val binding get() = _binding!!\r\n    private lateinit var dashboardViewModel: MenuViewModel\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        val view = inflater.inflate(R.layout.fragment_menu, container, false)\r\n\r\n        dashboardViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())\r\n\r\n        val recyclerView = binding.rvPopmenu\r\n        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)\r\n        popularMenuAdapter = PopularMenuAdapter(emptyList())\r\n        recyclerView.adapter = popularMenuAdapter\r\n\r\n        // Observing all history\r\n        dashboardViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->\r\n            when (result) {\r\n                is Result.Success -> {\r\n                    val allHistoryResponse = result.data\r\n                    allHistoryResponse?.let {\r\n                        popularMenuAdapter.setData(it.docs)\r\n                        val foodNames = it.docs.flatMap { listOf(it.food1, it.food2, it.food3) }.distinct()\r\n                        fetchMakananResponses(foodNames)\r\n                    }\r\n                }\r\n                is Result.Error -> {\r\n                }\r\n                is Result.Loading -> {\r\n                }\r\n            }\r\n        })\r\n\r\n        return view\r\n    }\r\n\r\n    private fun fetchMakananResponses(foodNames: List<String>) {\r\n        foodNames.forEach { foodName ->\r\n            val getMakananRequest = GetMakananRequest(foodName)\r\n            dashboardViewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner, Observer { result ->\r\n                when (result) {\r\n                    is Result.Success -> {\r\n                        val makananResponse = result.data\r\n                        popularMenuAdapter.addMakananResponse(makananResponse)\r\n                    }\r\n                    is Result.Error -> {\r\n                    }\r\n                    is Result.Loading -> {\r\n                    }\r\n                }\r\n            })\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/example/diabetter/view/main/ui/menu/MenuFragment.kt b/app/src/main/java/com/example/diabetter/view/main/ui/menu/MenuFragment.kt
+--- a/app/src/main/java/com/example/diabetter/view/main/ui/menu/MenuFragment.kt	
++++ b/app/src/main/java/com/example/diabetter/view/main/ui/menu/MenuFragment.kt	
+@@ -25,7 +25,8 @@
+     // This property is only valid between onCreateView and
+     // onDestroyView.
+     private val binding get() = _binding!!
+-    private lateinit var dashboardViewModel: MenuViewModel
++    private lateinit var menuViewModel: MenuViewModel
++    private lateinit var popularMenuAdapter: PopularMenuAdapter
+     override fun onCreateView(
+         inflater: LayoutInflater,
+         container: ViewGroup?,
+@@ -33,7 +34,7 @@
+     ): View {
+         val view = inflater.inflate(R.layout.fragment_menu, container, false)
+ 
+-        dashboardViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())
++        menuViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())
+ 
+         val recyclerView = binding.rvPopmenu
+         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+@@ -41,7 +42,7 @@
+         recyclerView.adapter = popularMenuAdapter
+ 
+         // Observing all history
+-        dashboardViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->
++        menuViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->
+             when (result) {
+                 is Result.Success -> {
+                     val allHistoryResponse = result.data
+@@ -64,7 +65,7 @@
+     private fun fetchMakananResponses(foodNames: List<String>) {
+         foodNames.forEach { foodName ->
+             val getMakananRequest = GetMakananRequest(foodName)
+-            dashboardViewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner, Observer { result ->
++            menuViewModel.getMakanan(getMakananRequest).observe(viewLifecycleOwner, Observer { result ->
+                 when (result) {
+                     is Result.Success -> {
+                         val makananResponse = result.data
