@@ -21,10 +21,7 @@ import com.example.diabetter.view.main.ui.menu.adapter.PopularMenuAdapter
 class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding
+    private val binding get() = _binding!!
     private lateinit var menuViewModel: MenuViewModel
     private lateinit var popularMenuAdapter: PopularMenuAdapter
     override fun onCreateView(
@@ -32,18 +29,15 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_menu, container, false)
-
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        val view = binding.root
         menuViewModel = ObtainViewModelFactory.obtainViewModelFactory(requireContext())
 
         val recyclerView = binding?.rvPopmenu
-        if (recyclerView != null) {
-            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        }
+        recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         popularMenuAdapter = PopularMenuAdapter(emptyList())
-        if (recyclerView != null) {
-            recyclerView.adapter = popularMenuAdapter
-        }
+        recyclerView?.adapter = popularMenuAdapter
+
 
         // Observing all history
         menuViewModel.getAllHistory().observe(viewLifecycleOwner, Observer { result ->
