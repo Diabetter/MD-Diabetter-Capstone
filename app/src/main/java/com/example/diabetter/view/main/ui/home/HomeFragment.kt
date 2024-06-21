@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +53,11 @@ class HomeFragment : Fragment() {
                 if(result != null){
                     when(result){
                         is Result.Loading -> {
-                            binding.progress.visibility = View.VISIBLE
+                            binding?.progress?.visibility ?:  View.VISIBLE
                         }
 
                         is Result.Error -> {
-                            binding.progress.visibility = View.VISIBLE
+                            binding?.progress?.visibility ?:  View.VISIBLE
                             Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                         }
 
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
                                 viewModel.getMakanan(getMakananRequest).observe(this) { result ->
                                     when (result) {
                                         is Result.Loading -> {
-                                            binding.progress.visibility = View.VISIBLE
+                                            binding?.progress?.visibility ?:  View.VISIBLE
                                         }
 
                                         is Result.Error -> {
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
                                             if (makananResponses.size == foodNames.size) {
                                                 setupRecyclerView()
                                             }
-                                            binding.progress.visibility = View.GONE
+                                            binding?.progress?.visibility ?:  View.GONE
     //                                        Log.d("Testt", makananResponses.toString())
                                         }
                                     }
@@ -107,7 +107,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val view = binding?.root
 
         return view
     }
@@ -116,7 +116,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = binding
 
-        menuTodayMenuBinding = binding.menuToday
+        if (binding != null) {
+            menuTodayMenuBinding = binding.menuToday
+        }
 
         menuTodayMenuBinding.apply {
             listOf(tvSeeDetail, tvDetailMenuToday).forEach { tv ->
@@ -127,9 +129,11 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.tvRefresh2.setOnClickListener {
-            val showPopUpRefresh = RefreshFragment()
-            showPopUpRefresh.show((activity as AppCompatActivity).supportFragmentManager, "RefreshFragment")
+        if (binding != null) {
+            binding.tvRefresh2.setOnClickListener {
+                val showPopUpRefresh = RefreshFragment()
+                showPopUpRefresh.show((activity as AppCompatActivity).supportFragmentManager, "RefreshFragment")
+            }
         }
 
         if (predictResponses.isNotEmpty()) {
